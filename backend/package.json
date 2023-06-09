@@ -1,0 +1,42 @@
+{
+  "name": "url-shortener-service",
+  "version": "1.0.0",
+  "description": "Url shortener backend service",
+  "keywords": [],
+  "homepage": "https://github.com/CaioOliveira793/url-shortener-speedio",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CaioOliveira793/url-shortener-speedio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CaioOliveira793/url-shortener-speedio/issues"
+  },
+  "author": "Caio Oliveira <caio.vsoliveira23@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "source": "src/main.ts",
+  "main": "build/main.cjs.js",
+  "module": "build/main.js",
+  "files": [
+    "build/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clear:build": "rimraf build",
+    "start": "node build/main.js",
+    "start:dev": "ts-node --esm src/main.ts",
+    "start:watch": "nodemon --ext ts,json --watch src --exec 'pnpm run start:dev'",
+    "build": "rollup --config rollup.config.ts --configPlugin typescript"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.1",
+    "@types/node": "^20.2.5",
+    "nodemon": "^2.0.22",
+    "rimraf": "^5.0.1",
+    "rollup": "^3.24.0",
+    "run-z": "^1.11.0",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.5.3",
+    "typescript": "^5.1.3"
+  }
+}
