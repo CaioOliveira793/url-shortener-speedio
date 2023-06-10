@@ -6,6 +6,7 @@ import {
 } from '@nestjs/platform-fastify';
 import { EnvVariables } from '@/config/Environment';
 import { AppModule } from '@/module/App';
+import { ShutdownSignal } from '@nestjs/common';
 
 async function bootstrap() {
 	const app = await NestFactory.create<NestFastifyApplication>(
@@ -18,7 +19,7 @@ async function bootstrap() {
 	const configService = app.get<ConfigService<EnvVariables>>(ConfigService);
 	const port = configService.get<number>('PORT') as number;
 
-	app.enableShutdownHooks();
+	app.enableShutdownHooks([ShutdownSignal.SIGTERM, ShutdownSignal.SIGINT]);
 
 	await app.listen(port, '0.0.0.0');
 }
