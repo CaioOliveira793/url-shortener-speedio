@@ -9,13 +9,13 @@ interface User {
 
 @Controller('user')
 export class UserController {
-  @Get()
-  getLoggedUser(): User {
-    return {
+	@Get()
+	getLoggedUser(): User {
+		return {
 			id: '1',
 			email: 'fake.user@email.com',
 			password_hash: '12345678',
 			version: 1,
 		};
-  }
+	}
 }

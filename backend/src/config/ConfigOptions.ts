@@ -1,14 +1,13 @@
 import { env } from 'node:process';
-import { ConfigModuleOptions } from "@nestjs/config";
+import { ConfigModuleOptions } from '@nestjs/config';
 import { NodeEnv, validateEnvVariables } from './Environment';
-
 
 export function createGlobalConfigOptions(): ConfigModuleOptions {
 	const options: ConfigModuleOptions = {
 		isGlobal: true,
 		cache: true,
 		expandVariables: true,
-		validate: validateEnvVariables
+		validate: validateEnvVariables,
 	};
 
 	switch (env['NODE_ENV'] as NodeEnv) {

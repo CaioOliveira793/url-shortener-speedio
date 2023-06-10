@@ -14,15 +14,23 @@ export interface EnvVariables extends Record<string, unknown> {
 	PORT: number;
 }
 
-const EnvVariablesSchema = z.object({
-	PORT: z.number({
-		invalid_type_error: InvalidTypeMessage,
-		required_error: RequiredValueMessage,
-		coerce: true
-	}).int({ message: 'PORT environment must be a integer' }),
-	NODE_ENV: z.enum(['development', 'test', 'production']).default('development')
-}).passthrough();
+const EnvVariablesSchema = z
+	.object({
+		PORT: z
+			.number({
+				invalid_type_error: InvalidTypeMessage,
+				required_error: RequiredValueMessage,
+				coerce: true,
+			})
+			.int({ message: 'PORT environment must be a integer' }),
+		NODE_ENV: z
+			.enum(['development', 'test', 'production'])
+			.default('development'),
+	})
+	.passthrough();
 
-export function validateEnvVariables(env: Record<string, unknown>): EnvVariables {
+export function validateEnvVariables(
+	env: Record<string, unknown>
+): EnvVariables {
 	return EnvVariablesSchema.parse(env);
 }
