@@ -15,18 +15,19 @@
   "license": "MIT",
   "type": "module",
   "source": "src/main.ts",
-  "main": "build/main.cjs.js",
   "module": "build/main.js",
   "files": [
     "build/*"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "clear:build": "rimraf build",
     "start": "node build/main.js",
-    "start:dev": "ts-node --esm src/main.ts",
-    "start:watch": "nodemon --ext ts,json --watch src --exec 'pnpm run start:dev'",
-    "build": "rollup --config rollup.config.ts --configPlugin typescript"
+    "start:dev": "nodemon --ext ts,json --watch src --exec 'run-z build start'",
+    "build": "rollup --config rollup.config.ts --configPlugin typescript",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "",
+    "clear": "rimraf build coverage",
+    "clear:build": "rimraf build",
+    "clear:coverage": "rimraf coverage"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.1",
@@ -35,8 +36,16 @@
     "rimraf": "^5.0.1",
     "rollup": "^3.24.0",
     "run-z": "^1.11.0",
-    "ts-node": "^10.9.1",
     "tslib": "^2.5.3",
     "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "@nestjs/common": "^9.4.2",
+    "@nestjs/config": "^2.3.2",
+    "@nestjs/core": "^9.4.2",
+    "@nestjs/platform-fastify": "^9.4.2",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.8.1",
+    "zod": "^3.21.4"
   }
 }

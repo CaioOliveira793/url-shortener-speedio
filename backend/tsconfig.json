@@ -1,23 +1,24 @@
 {
 	"compilerOptions": {
 		"incremental": false,
-		"target": "es2020",
+		"target": "es2022",
 		"lib": [
 			"esnext",
 			"dom"
 		],
 		"module": "esnext",
 		"moduleResolution": "node",
+		"noEmit": true,
 		"allowJs": false,
 		"checkJs": false,
 		"declaration": false,
 		"declarationMap": false,
 		"sourceMap": true,
 		"rootDir": "./",
-		"baseUrl": "src",
+		"baseUrl": "./",
 		"paths": {
 			"@/*": [
-				"./*"
+				"./src/*"
 			],
 			"@test/*": [
 				"./../test/*"
@@ -26,7 +27,8 @@
 		"outDir": "build",
 		"isolatedModules": false,
 		"resolveJsonModule": true,
-		"removeComments": false,
+		"removeComments": true,
+		"experimentalDecorators": true,
 		"stripInternal": true,
 		"esModuleInterop": true,
 		"strict": true,
@@ -47,7 +49,6 @@
 		"preserveConstEnums": true,
 		"exactOptionalPropertyTypes": true,
 		"useUnknownInCatchVariables": true,
-		"noStrictGenericChecks": false,
 		"allowUnreachableCode": false,
 		"allowSyntheticDefaultImports": true,
 		"forceConsistentCasingInFileNames": true,
