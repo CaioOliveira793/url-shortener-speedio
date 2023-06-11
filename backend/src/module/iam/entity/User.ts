@@ -1,6 +1,10 @@
 import { ulid } from 'ulid';
 import { Entity, EntityID } from '@/module/base/Entity';
 import { PasswordEncryptionService } from '@/module/iam/service/EncryptionService';
+import {
+	AuthenticationError,
+	AuthenticationType,
+} from '@/exception/security/AuthenticationError';
 
 export interface UserState {
 	name: string;
@@ -37,8 +41,27 @@ export class User extends Entity<UserState> {
 		});
 	}
 
-	public static restore(state: UserState, id: EntityID): User {
+	public static restore(id: EntityID, state: UserState): User {
 		return new User(id, state);
+	}
+
+	public async makeAuthentication(
+		password: string,
+		passwordEncryptionService: PasswordEncryptionService
+	): Promise<void | AuthenticationError> {
+		const passwordMatch = await passwordEncryptionService.compare(
+			this.state.passwordHash,
+			password
+		);
+
+		if (!passwordMatch) {
+			return new AuthenticationError(
+				'Invalid user credential',
+				AuthenticationType.InvalidCredential
+			);
+		}
+
+		this.state.lastAuth = new Date();
 	}
 
 	public get name() {
