@@ -17,18 +17,22 @@
 	"source": "src/main.ts",
 	"module": "build/main.js",
 	"files": [
-		"build/*"
+		"build/main.js",
+		"build/main.js.map"
 	],
 	"scripts": {
 		"start": "node build/main.js",
 		"start:dev": "nodemon --ext ts,json --watch src --exec 'run-z clear:build build start'",
-		"build": "rollup --config rollup.config.ts --configPlugin typescript",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"check": "run-z check:lint,check:type",
+		"build": "rollup --config rollup/dev.config.js",
+		"build:test": "rollup --config rollup/test.config.js",
+		"pretest": "run-z clear:test build:test",
+		"test": "node --test build/test/",
+		"check": "run-z check:lint,check:type test",
 		"check:lint": "eslint . --ext ts,json",
 		"check:type": "tsc --noEmit",
 		"clear": "rimraf build coverage",
 		"clear:build": "rimraf build",
+		"clear:test": "rimraf build/test",
 		"clear:coverage": "rimraf coverage"
 	},
 	"devDependencies": {
@@ -39,6 +43,7 @@
 		"eslint": "^8.42.0",
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-prettier": "^4.2.1",
+		"glob": "^10.2.7",
 		"nodemon": "^2.0.22",
 		"rimraf": "^5.0.1",
 		"rollup": "^3.24.0",
@@ -52,6 +57,7 @@
 		"@nestjs/core": "^9.4.2",
 		"@nestjs/platform-fastify": "^9.4.2",
 		"argon2": "^0.30.3",
+		"date-fns": "^2.30.0",
 		"reflect-metadata": "^0.1.13",
 		"rxjs": "^7.8.1",
 		"ulid": "^2.3.0",

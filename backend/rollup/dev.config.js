@@ -1,8 +1,8 @@
-import { RollupOptions } from 'rollup';
 import typescript from '@rollup/plugin-typescript';
-import { default as packageJson } from './package.json' assert { type: 'json' };
+import { default as packageJson } from '../package.json' assert { type: 'json' };
 
-const buildOptions: RollupOptions = {
+/** @type {import('rollup').RollupOptions} */
+const buildOptions = {
 	input: packageJson.source,
 	plugins: [
 		typescript({
