@@ -1,5 +1,5 @@
 import { createHash, randomBytes } from 'node:crypto';
-import { Provider } from '@nestjs/common';
+import { Injectable, Provider } from '@nestjs/common';
 import * as slugCodec from '@/util/SlugCodec';
 
 export interface SlugGenerationService {
@@ -8,6 +8,7 @@ export interface SlugGenerationService {
 
 export const SLUG_GENERATION_SERVICE = 'URL/SLUG_GENERATION_SERVICE';
 
+@Injectable()
 export class RandomSlugGenerationService implements SlugGenerationService {
 	public async generate(long_url: string): Promise<string> {
 		const hasher = createHash('sha256');

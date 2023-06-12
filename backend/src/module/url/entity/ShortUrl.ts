@@ -11,7 +11,7 @@ export interface ShortUrlState {
 	/**
 	 * Url that the short url points to.
 	 */
-	long_url: string;
+	longUrl: string;
 	active: boolean;
 	/**
 	 * Expiration date
@@ -24,7 +24,7 @@ export interface ShortUrlState {
 	/**
 	 * User that created the short url
 	 */
-	creator_id: EntityID | null;
+	creatorId: EntityID | null;
 	/**
 	 * Short url creation time
 	 */
@@ -33,12 +33,16 @@ export interface ShortUrlState {
 	 * Short url last updated time
 	 */
 	updated: Date;
+	/**
+	 * Short url version
+	 */
+	version: number;
 }
 
 export interface CreateShortUrlData {
-	long_url: string;
+	longUrl: string;
 	expires: Date | null;
-	creator_id: EntityID | null;
+	creatorId: EntityID | null;
 }
 
 export class ShortUrl extends Entity<ShortUrlState> {
@@ -46,18 +50,19 @@ export class ShortUrl extends Entity<ShortUrlState> {
 		data: CreateShortUrlData,
 		slugService: SlugGenerationService
 	): Promise<ShortUrl> {
-		const slug = await slugService.generate(data.long_url);
+		const slug = await slugService.generate(data.longUrl);
 		const now = new Date();
 
 		return new ShortUrl(ulid(), {
 			slug,
-			long_url: data.long_url,
+			longUrl: data.longUrl,
 			active: true,
 			expires: data.expires,
 			access: 0,
-			creator_id: data.creator_id,
+			creatorId: data.creatorId,
 			created: now,
 			updated: now,
+			version: 1,
 		});
 	}
 
@@ -80,5 +85,30 @@ export class ShortUrl extends Entity<ShortUrlState> {
 	 */
 	public canRedirect(): boolean {
 		return this.state.active && !this.expired();
+	}
+
+	public get slug() {
+		return this.state.slug;
+	}
+	public get longUrl() {
+		return this.state.longUrl;
+	}
+	public get active() {
+		return this.state.active;
+	}
+	public get expires() {
+		return this.state.expires;
+	}
+	public get access() {
+		return this.state.access;
+	}
+	public get creatorId() {
+		return this.state.creatorId;
+	}
+	public get created() {
+		return this.state.created;
+	}
+	public get updated() {
+		return this.state.updated;
 	}
 }
