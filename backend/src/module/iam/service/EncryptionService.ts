@@ -1,13 +1,27 @@
 import { randomBytes } from 'node:crypto';
 import { default as argon2 } from 'argon2';
 import { Injectable, Provider } from '@nestjs/common';
+import {
+	UnauthorizedError,
+	UnauthorizedType,
+} from '@/exception/security/UnauthorizedError';
+import { z } from 'zod';
+import { JWTService } from './JWTService';
+import { ConfigService } from '@nestjs/config';
+import { EnvVariables } from '@/config/Environment';
 
 export interface PasswordEncryptionService {
-	hash(plainTextPassword: string): Promise<string>;
-	compare(hash: string, plainTextPassword: string): Promise<boolean>;
+	hash(password: string): Promise<string>;
+	compare(hash: string, password: string): Promise<boolean>;
+}
+
+export interface TokenEncryptionService {
+	verify<T>(cypher: string, schema: z.Schema<T>): T | Promise<T>;
+	sign<T>(data: T): string | Promise<string>;
 }
 
 export const PASSWORD_ENCRYPTION_PROVIDER = 'IAM/PASSWORD_ENCRYPTION_PROVIDER';
+export const TOKEN_ENCRYPTION_PROVIDER = 'IAM/TOKEN_ENCRYPTION_PROVIDER';
 
 const enum Argon2AlgorithmType {
 	ARGON2D = 0,
@@ -16,20 +30,18 @@ const enum Argon2AlgorithmType {
 }
 
 @Injectable()
-export class Argon2PasswordEncryptionService
-	implements PasswordEncryptionService
-{
+export class Argon2EncryptionService implements PasswordEncryptionService {
 	public async hash(plainText: string): Promise<string> {
-		const salt = randomBytes(Argon2PasswordEncryptionService.SALT_LENGTH);
+		const salt = randomBytes(Argon2EncryptionService.SALT_LENGTH);
 		return argon2.hash(plainText, {
 			salt,
-			saltLength: Argon2PasswordEncryptionService.SALT_LENGTH,
-			hashLength: Argon2PasswordEncryptionService.HASH_LENGTH,
-			memoryCost: Argon2PasswordEncryptionService.MEMORY_COST,
-			timeCost: Argon2PasswordEncryptionService.TIME_COST,
-			parallelism: Argon2PasswordEncryptionService.PARALLELISM,
-			version: Argon2PasswordEncryptionService.ALGORITHM_VERSION,
-			type: Argon2PasswordEncryptionService.TYPE,
+			saltLength: Argon2EncryptionService.SALT_LENGTH,
+			hashLength: Argon2EncryptionService.HASH_LENGTH,
+			memoryCost: Argon2EncryptionService.MEMORY_COST,
+			timeCost: Argon2EncryptionService.TIME_COST,
+			parallelism: Argon2EncryptionService.PARALLELISM,
+			version: Argon2EncryptionService.ALGORITHM_VERSION,
+			type: Argon2EncryptionService.TYPE,
 		});
 	}
 
@@ -46,8 +58,52 @@ export class Argon2PasswordEncryptionService
 	private static readonly TYPE = Argon2AlgorithmType.ARGON2ID;
 }
 
-export const Argon2PasswordEncryptionProvider: Provider<PasswordEncryptionService> =
-	{
-		provide: PASSWORD_ENCRYPTION_PROVIDER,
-		useClass: Argon2PasswordEncryptionService,
-	};
+export const Argon2EncryptionProvider: Provider<PasswordEncryptionService> = {
+	provide: PASSWORD_ENCRYPTION_PROVIDER,
+	useClass: Argon2EncryptionService,
+};
+
+@Injectable()
+export class JWTEncryptionService implements TokenEncryptionService {
+	constructor(config: ConfigService<EnvVariables, true>) {
+		// FIXME: inject config service
+		console.log('config service:', config);
+		this.jwtService = new JWTService("config.get('TOKEN_SECRET')");
+	}
+
+	public async verify<T>(cypher: string, schema: z.Schema<T>): Promise<T> {
+		try {
+			const payload = await this.jwtService.verify<T>(cypher);
+			const result = schema.safeParse(payload.data);
+
+			if (!result.success) {
+				throw new UnauthorizedError(
+					'Invalid token',
+					UnauthorizedType.InvalidToken
+				);
+			}
+
+			return payload.data;
+		} catch (err) {
+			throw new UnauthorizedError(
+				'Invalid token',
+				UnauthorizedType.InvalidToken
+			);
+		}
+	}
+
+	public sign<T>(data: T): string {
+		return this.jwtService.sign<T>(
+			data,
+			JWTEncryptionService.ACCESS_TOKEN_EXPIRATION
+		);
+	}
+
+	private static readonly ACCESS_TOKEN_EXPIRATION = 60 * 60 * 8; // 8h
+	private readonly jwtService: JWTService;
+}
+
+export const JWTEncryptionProvider: Provider<TokenEncryptionService> = {
+	provide: TOKEN_ENCRYPTION_PROVIDER,
+	useClass: JWTEncryptionService,
+};

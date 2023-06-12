@@ -2,7 +2,7 @@ import { ConflictError } from '@/exception/resource/ConflictError';
 import { ResourceNotFound } from '@/exception/resource/ResourceNotFound';
 import { EntityID } from '@/module/base/Entity';
 import { User, UserState } from '@/module/iam/entity/User';
-import { Provider } from '@nestjs/common';
+import { Injectable, Provider } from '@nestjs/common';
 
 interface RepositoryOption {
 	optimisticLock: boolean;
@@ -19,6 +19,7 @@ export interface UserRepository {
 
 export const USER_REPOSITORY_PROVIDER = 'IAM/USER_REPOSITORY_PROVIDER';
 
+@Injectable()
 export class UserMemRepository implements UserRepository {
 	protected readonly users: Map<string, UserState>;
 

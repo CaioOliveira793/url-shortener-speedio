@@ -1,12 +1,18 @@
 import { Module } from '@nestjs/common';
 import { UserController } from './controller/UserController';
-import { Argon2PasswordEncryptionProvider } from './service/EncryptionService';
+import {
+	Argon2EncryptionProvider,
+	JWTEncryptionProvider,
+} from './service/EncryptionService';
 import { SlugGenerationProvider } from '../url/service/SlugGenerationService';
 import { UserRepositoryProvider } from './service/UserRepository';
+import { JWTService } from './service/JWTService';
 
 @Module({
 	providers: [
-		Argon2PasswordEncryptionProvider,
+		JWTService,
+		Argon2EncryptionProvider,
+		JWTEncryptionProvider,
 		SlugGenerationProvider,
 		UserRepositoryProvider,
 	],

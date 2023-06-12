@@ -18,8 +18,8 @@ async function bootstrap() {
 	);
 	app.register(cors, { origin: true });
 
-	const configService = app.get<ConfigService<EnvVariables>>(ConfigService);
-	const port = configService.get<number>('PORT') as number;
+	const config = app.get<ConfigService<EnvVariables, true>>(ConfigService);
+	const port = config.get<number>('PORT');
 
 	app.enableShutdownHooks([ShutdownSignal.SIGTERM, ShutdownSignal.SIGINT]);
 
