@@ -29,7 +29,7 @@ export const enum DataIssueType {
 
 export interface InvalidDataIssue {
 	message: string;
-	path: string;
+	path: string | null;
 	type: DataIssueType;
 }
 

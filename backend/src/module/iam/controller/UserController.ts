@@ -1,4 +1,5 @@
 import {
+	Body,
 	Controller,
 	Get,
 	HttpCode,
@@ -24,12 +25,11 @@ import {
 	UserRepository,
 } from '@/module/iam/service/UserRepository';
 import { Token } from '@/module/iam/type/Token';
-import { ReqBody } from '@/decorator/ReqBody';
 import { CreateUserSchema } from '@/module/iam/validation/Schema';
-import { zodSchema } from '@/util/zod';
 import { ResourceNotFound } from '@/exception/resource/ResourceNotFound';
 import { ReqHeader } from '@/decorator/ReqHeader';
 import { AuthTokenPipe } from '@/pipe/AuthTokenPipe';
+import { SchemaPipe } from '@/pipe/SchemaPipe';
 
 @Controller('user')
 export class UserController {
@@ -45,8 +45,7 @@ export class UserController {
 	@Post()
 	@HttpCode(HttpStatus.CREATED)
 	public async createUser(
-		@ReqBody(zodSchema(CreateUserSchema))
-		data: CreateUserData
+		@Body(new SchemaPipe(CreateUserSchema)) data: CreateUserData
 	): Promise<AuthResponse> {
 		const existentUser = await this.userRepository.findByEmail(data.email);
 		if (existentUser) {
