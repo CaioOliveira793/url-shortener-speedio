@@ -5,7 +5,7 @@ import {
 	UnauthorizedError,
 	UnauthorizedType,
 } from '@/exception/security/UnauthorizedError';
-import { z } from 'zod';
+import { Schema } from 'zod';
 import { JWTService } from './JWTService';
 import { ConfigService } from '@nestjs/config';
 import { EnvVariables } from '@/config/Environment';
@@ -16,7 +16,7 @@ export interface PasswordEncryptionService {
 }
 
 export interface TokenEncryptionService {
-	verify<T>(cypher: string, schema: z.Schema<T>): T | Promise<T>;
+	verify<T>(cypher: string, schema: Schema<T>): T | Promise<T>;
 	sign<T>(data: T): string | Promise<string>;
 }
 
@@ -69,7 +69,7 @@ export class JWTEncryptionService implements TokenEncryptionService {
 		this.jwtService = new JWTService(config.get('TOKEN_SECRET'));
 	}
 
-	public async verify<T>(cypher: string, schema: z.Schema<T>): Promise<T> {
+	public async verify<T>(cypher: string, schema: Schema<T>): Promise<T> {
 		try {
 			const payload = await this.jwtService.verify<T>(cypher);
 			const result = schema.safeParse(payload.data);
