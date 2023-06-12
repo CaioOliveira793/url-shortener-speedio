@@ -1,4 +1,4 @@
-import { Controller, Inject, Post } from '@nestjs/common';
+import { Controller, HttpCode, HttpStatus, Inject, Post } from '@nestjs/common';
 import { ResourceNotFound } from '@/exception/resource/ResourceNotFound';
 import {
 	PASSWORD_ENCRYPTION_PROVIDER,
@@ -30,6 +30,7 @@ export class AuthController {
 	) {}
 
 	@Post()
+	@HttpCode(HttpStatus.OK)
 	async authenticate(
 		@ReqCredential() credential: UserCredential
 	): Promise<AuthResponse | void> {
