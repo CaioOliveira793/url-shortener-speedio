@@ -1,6 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 import { AppError, HttpErrorObject } from '@/exception/base/AppError';
-import { ResourceLocation } from './type';
+import { ResourceLocation } from '@/common/type';
 
 export class ResourceAlreadyExists extends AppError {
 	public readonly error: string = 'RESOURCE_ALREADY_EXISTS';
