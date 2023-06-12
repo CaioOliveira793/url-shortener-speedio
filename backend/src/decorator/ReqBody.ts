@@ -1,7 +1,6 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 import { Request, RequestSegment } from '@/http/types';
 import { RequestValidationError } from '@/exception/validation/RequestValidationError';
-import { makeInvalidDataIssueFromZodIssue } from '@/common/type';
 import { Validator } from '@/util/zod';
 
 export const ReqBody = createParamDecorator<
@@ -13,9 +12,9 @@ export const ReqBody = createParamDecorator<
 
 	const result = schema.parse(request.body);
 	if (!result.success) {
-		throw new RequestValidationError(
+		throw RequestValidationError.fromZodIssue(
 			RequestSegment.Body,
-			result.error.issues.map(makeInvalidDataIssueFromZodIssue)
+			result.error.issues
 		);
 	}
 

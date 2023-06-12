@@ -81,7 +81,7 @@ export class JWTEncryptionService implements TokenEncryptionService {
 				);
 			}
 
-			return payload.data;
+			return result.data;
 		} catch (err) {
 			throw new UnauthorizedError(
 				'Invalid token',
