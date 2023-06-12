@@ -66,9 +66,7 @@ export const Argon2EncryptionProvider: Provider<PasswordEncryptionService> = {
 @Injectable()
 export class JWTEncryptionService implements TokenEncryptionService {
 	constructor(config: ConfigService<EnvVariables, true>) {
-		// FIXME: inject config service
-		console.log('config service:', config);
-		this.jwtService = new JWTService("config.get('TOKEN_SECRET')");
+		this.jwtService = new JWTService(config.get('TOKEN_SECRET'));
 	}
 
 	public async verify<T>(cypher: string, schema: z.Schema<T>): Promise<T> {
