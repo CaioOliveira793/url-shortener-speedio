@@ -19,7 +19,7 @@ export interface UserState {
 export interface CreateUserData {
 	name: string;
 	email: string;
-	plainTextPassword: string;
+	password: string;
 }
 
 export class User extends Entity<UserState> {
@@ -27,7 +27,7 @@ export class User extends Entity<UserState> {
 		data: CreateUserData,
 		encryptionService: PasswordEncryptionService
 	): Promise<User> {
-		const passwordHash = await encryptionService.hash(data.plainTextPassword);
+		const passwordHash = await encryptionService.hash(data.password);
 		const now = new Date();
 
 		return new User(ulid(), {

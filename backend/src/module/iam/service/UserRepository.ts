@@ -11,6 +11,7 @@ interface RepositoryOption {
 const DefaultRepositoryOptions: RepositoryOption = { optimisticLock: true };
 
 export interface UserRepository {
+	insert(user: User): Promise<void>;
 	find(id: EntityID): Promise<User | null>;
 	findByEmail(email: string): Promise<User | null>;
 	update(user: User, options?: RepositoryOption): Promise<void>;
@@ -25,6 +26,17 @@ export class UserMemRepository implements UserRepository {
 
 	public constructor(users: Map<string, UserState> = new Map()) {
 		this.users = users;
+	}
+
+	public async insert(user: User): Promise<void> {
+		if (this.users.get(user.id)) {
+			throw new Error(UserMemRepository.UNIQUE_ID_MESSAGE);
+		}
+		if (this.idFromEmail(user.email)) {
+			throw new Error(UserMemRepository.UNIQUE_EMAIL_MESSAGE);
+		}
+
+		this.users.set(user.id, user.internalState());
 	}
 
 	public async find(id: string): Promise<User | null> {
@@ -48,9 +60,13 @@ export class UserMemRepository implements UserRepository {
 		user: User,
 		options: RepositoryOption = DefaultRepositoryOptions
 	): Promise<void> {
+		if (this.idFromEmail(user.email) !== user.id) {
+			throw new Error(UserMemRepository.UNIQUE_EMAIL_MESSAGE);
+		}
+
 		const state = this.users.get(user.id);
 		if (!state) {
-			throw new ResourceNotFound('User not found error', [
+			throw new ResourceNotFound('Resource not found', [
 				{
 					key: 'id:' + user.id,
 					path: null,
@@ -67,7 +83,7 @@ export class UserMemRepository implements UserRepository {
 		if (state.version + 1 === user.version) {
 			this.users.set(user.id, user.internalState());
 		} else {
-			throw new ConflictError('User conflict error', [
+			throw new ConflictError('Resource conflict', [
 				{
 					key: 'id:' + user.id,
 					path: null,
@@ -84,7 +100,7 @@ export class UserMemRepository implements UserRepository {
 		const state = this.users.get(id);
 
 		if (!state) {
-			throw new ResourceNotFound('User not found error', [
+			throw new ResourceNotFound('Resource not found', [
 				{
 					key: 'id:' + id,
 					path: null,
@@ -95,6 +111,18 @@ export class UserMemRepository implements UserRepository {
 
 		state.lastAuth = lastAuth;
 	}
+
+	private idFromEmail(email: string): string | null {
+		for (const [id, state] of this.users.entries()) {
+			if (state.email === email) return id;
+		}
+		return null;
+	}
+
+	private static readonly UNIQUE_EMAIL_MESSAGE =
+		'ERROR: duplicate key violates unique constraint "unique_email".';
+	private static readonly UNIQUE_ID_MESSAGE =
+		'ERROR: duplicate key violates unique constraint "unique_id".';
 }
 
 export const UserRepositoryProvider: Provider<UserRepository> = {

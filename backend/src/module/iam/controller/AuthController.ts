@@ -26,7 +26,7 @@ export class AuthController {
 		@Inject(TOKEN_ENCRYPTION_PROVIDER)
 		private readonly tokenEncryption: TokenEncryptionService,
 		@Inject(USER_REPOSITORY_PROVIDER)
-		private readonly userRepo: UserRepository
+		private readonly userRepository: UserRepository
 	) {}
 
 	@Post()
@@ -34,9 +34,9 @@ export class AuthController {
 	async authenticate(
 		@Body() credential: UserCredential
 	): Promise<AuthResponse | void> {
-		const user = await this.userRepo.findByEmail(credential.email);
+		const user = await this.userRepository.findByEmail(credential.email);
 		if (!user) {
-			throw new ResourceNotFound('User not found error', [
+			throw new ResourceNotFound('Resource not found', [
 				{
 					resource_type: 'USER',
 					key: 'email:' + credential.email,
@@ -51,7 +51,7 @@ export class AuthController {
 		);
 		if (error) throw error;
 
-		await this.userRepo.updateLastAuth(user.id, user.lastAuth);
+		await this.userRepository.updateLastAuth(user.id, user.lastAuth);
 
 		const token = await Token.new(user.id, this.tokenEncryption);
 		return { token: token.toString(), user: makeUserResource(user) };
