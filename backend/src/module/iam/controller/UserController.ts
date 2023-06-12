@@ -1,11 +1,4 @@
-import {
-	Body,
-	Controller,
-	HttpCode,
-	HttpStatus,
-	Inject,
-	Post,
-} from '@nestjs/common';
+import { Controller, HttpCode, HttpStatus, Inject, Post } from '@nestjs/common';
 import { ResourceAlreadyExists } from '@/exception/resource/ResourceAlreadyExists';
 import { CreateUserData, User } from '@/module/iam/entity/User';
 import {
@@ -20,6 +13,9 @@ import {
 	UserRepository,
 } from '@/module/iam/service/UserRepository';
 import { Token } from '@/module/iam/type/Token';
+import { ReqBody } from '@/decorator/ReqBody';
+import { CreateUserSchema } from '@/module/iam/validation/Schema';
+import { zodSchema } from '@/util/zod';
 
 @Controller('user')
 export class UserController {
@@ -34,7 +30,10 @@ export class UserController {
 
 	@Post()
 	@HttpCode(HttpStatus.CREATED)
-	public async createUser(@Body() data: CreateUserData): Promise<AuthResponse> {
+	public async createUser(
+		@ReqBody(zodSchema(CreateUserSchema))
+		data: CreateUserData
+	): Promise<AuthResponse> {
 		const existentUser = await this.userRepository.findByEmail(data.email);
 		if (existentUser) {
 			throw new ResourceAlreadyExists('Resource already exists', [
