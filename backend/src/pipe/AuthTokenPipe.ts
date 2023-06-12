@@ -8,7 +8,7 @@ import {
 } from '@/module/iam/service/EncryptionService';
 
 @Injectable()
-export class AuthToken implements PipeTransform {
+export class AuthTokenPipe implements PipeTransform {
 	constructor(
 		@Inject(TOKEN_ENCRYPTION_PROVIDER)
 		private readonly tokenEncryption: TokenEncryptionService

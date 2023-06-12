@@ -1,3 +1,4 @@
+import { Paramtype } from '@nestjs/common';
 import { FastifyRequest, FastifyReply } from 'fastify';
 import { IncomingHttpHeaders } from 'http';
 
@@ -16,4 +17,21 @@ export const enum RequestSegment {
 	SignedCookies = 'SIGNED_COOKIE',
 	MultipartFile = 'MULTIPART_FILE',
 	MultipartField = 'MULTIPART_FIELD',
+	Unknown = 'UNKNOWN',
+}
+
+export function requestSegmentFromParamType(
+	type?: Paramtype | null
+): RequestSegment {
+	switch (type) {
+		case 'body':
+			return RequestSegment.Body;
+		case 'param':
+			return RequestSegment.Params;
+		case 'query':
+			return RequestSegment.Query;
+		case 'custom':
+		default:
+			return RequestSegment.Unknown;
+	}
 }

@@ -29,7 +29,7 @@ import { CreateUserSchema } from '@/module/iam/validation/Schema';
 import { zodSchema } from '@/util/zod';
 import { ResourceNotFound } from '@/exception/resource/ResourceNotFound';
 import { ReqHeader } from '@/decorator/ReqHeader';
-import { AuthToken } from '@/pipe/AuthToken';
+import { AuthTokenPipe } from '@/pipe/AuthTokenPipe';
 
 @Controller('user')
 export class UserController {
@@ -70,7 +70,7 @@ export class UserController {
 	@Get('me')
 	@HttpCode(HttpStatus.OK)
 	public async getLoggedUser(
-		@ReqHeader('authentication', AuthToken) token: Token<string>
+		@ReqHeader('authentication', AuthTokenPipe) token: Token<string>
 	): Promise<UserResource> {
 		const user = await this.userRepository.find(token.data);
 		if (!user) {
