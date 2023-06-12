@@ -1,5 +1,10 @@
 import { User } from '@/module/iam/entity/User';
 
+export interface UserCredential {
+	email: string;
+	password: string;
+}
+
 export interface UserResource {
 	id: string;
 	name: string;
@@ -7,6 +12,11 @@ export interface UserResource {
 	last_auth: Date;
 	created: Date;
 	updated: Date;
+}
+
+export interface AuthResponse {
+	token: string;
+	user: UserResource;
 }
 
 export function makeUserResource(user: User): UserResource {

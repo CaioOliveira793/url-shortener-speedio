@@ -4,7 +4,7 @@ import {
 	AuthenticationType,
 } from '@/exception/security/AuthenticationError';
 import { Request } from '@/http/types';
-import { UserCredentialSchema } from '@/module/iam/dto/UserCredential';
+import { UserCredentialSchema } from '@/module/iam/validation/Schema';
 
 export class UserCredentialGuard implements CanActivate {
 	public async canActivate(context: ExecutionContext): Promise<boolean> {
