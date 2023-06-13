@@ -1,3 +1,4 @@
+import { uniqueConstraintViolationMessage } from '@/exception/Message';
 import { ConflictError } from '@/exception/resource/ConflictError';
 import { ResourceNotFound } from '@/exception/resource/ResourceNotFound';
 import { EntityID } from '@/module/base/Entity';
@@ -120,9 +121,9 @@ export class UserMemRepository implements UserRepository {
 	}
 
 	private static readonly UNIQUE_EMAIL_MESSAGE =
-		'ERROR: duplicate key violates unique constraint "unique_email".';
+		uniqueConstraintViolationMessage('unique_email');
 	private static readonly UNIQUE_ID_MESSAGE =
-		'ERROR: duplicate key violates unique constraint "unique_id".';
+		uniqueConstraintViolationMessage('unique_id');
 }
 
 export const UserRepositoryProvider: Provider<UserRepository> = {

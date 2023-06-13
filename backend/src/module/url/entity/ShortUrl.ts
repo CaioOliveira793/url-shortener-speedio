@@ -40,26 +40,26 @@ export interface ShortUrlState {
 }
 
 export interface CreateShortUrlData {
-	longUrl: string;
+	long_url: string;
 	expires: Date | null;
-	creatorId: EntityID | null;
 }
 
 export class ShortUrl extends Entity<ShortUrlState> {
 	public static async create(
 		data: CreateShortUrlData,
+		creatorId: string | null,
 		slugService: SlugGenerationService
 	): Promise<ShortUrl> {
-		const slug = await slugService.generate(data.longUrl);
+		const slug = await slugService.generate(data.long_url);
 		const now = new Date();
 
 		return new ShortUrl(ulid(), {
 			slug,
-			longUrl: data.longUrl,
+			longUrl: data.long_url,
 			active: true,
 			expires: data.expires,
 			access: 0,
-			creatorId: data.creatorId,
+			creatorId,
 			created: now,
 			updated: now,
 			version: 1,
