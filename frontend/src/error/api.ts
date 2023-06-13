@@ -55,7 +55,7 @@ export interface ForbiddenError extends ApiError {
 	readonly type: ForbiddenErrorType;
 }
 
-export enum ApiErrorType {
+export const enum ApiErrorType {
 	UnknownResponse = 'UNKNOWN_RESPONSE',
 }
 
@@ -63,9 +63,18 @@ export class ApiClientError extends Error {
 	public readonly type: ApiErrorType;
 	public readonly data: unknown;
 
-	constructor(type: ApiErrorType, message = 'Api error', data?: unknown) {
-		super(message);
+	constructor(type: ApiErrorType, data?: unknown) {
+		super('API Client error: ' + ApiClientError.messageFromApiErrorType(type));
 		this.type = type;
 		this.data = data;
+	}
+
+	public static messageFromApiErrorType(type: ApiErrorType): string {
+		switch (type) {
+			case ApiErrorType.UnknownResponse:
+				return 'unknown response type';
+			default:
+				return '';
+		}
 	}
 }

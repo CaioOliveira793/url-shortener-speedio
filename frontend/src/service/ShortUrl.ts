@@ -61,11 +61,7 @@ export async function createShortUrl(
 		return { type: 'RESOURCE_ALREADY_EXISTS', value: resData };
 	}
 
-	throw new ApiClientError(
-		ApiErrorType.UnknownResponse,
-		'Unknown response type',
-		resData
-	);
+	throw new ApiClientError(ApiErrorType.UnknownResponse, resData);
 }
 
 export type GetShortUrlResponse =
@@ -93,11 +89,7 @@ export async function getShortUrl(slug: string): Promise<GetShortUrlResponse> {
 		return { type: 'NOT_FOUND', value: resData };
 	}
 
-	throw new ApiClientError(
-		ApiErrorType.UnknownResponse,
-		'Unknown response type',
-		resData
-	);
+	throw new ApiClientError(ApiErrorType.UnknownResponse, resData);
 }
 
 export function makeShortUrlRedirectLink(slug: string): string {
