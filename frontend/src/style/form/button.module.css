@@ -1,0 +1,491 @@
+/* Button component */
+
+.button {
+	--button-color: initial;
+	--button-bg-color: initial;
+	--button-border-color: initial;
+	--button-shadow: initial;
+	--button-padding: initial;
+	--button-gap: initial;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	user-select: none;
+	vertical-align: middle;
+	text-transform: uppercase;
+	gap: var(--button-gap);
+	padding: var(--button-padding);
+	border-radius: var(--border-radius-unit);
+	color: var(--button-color);
+	border: 1px solid var(--button-border-color);
+	background-color: var(--button-bg-color);
+	box-shadow: var(--button-shadow);
+	transition: all 100ms ease-in-out;
+}
+
+.button svg {
+	fill: currentcolor;
+}
+
+.button.fullwidth {
+	width: 100%;
+}
+
+.button.outlined,
+.button.icon_outlined {
+	--button-bg-color: transparent;
+}
+
+.button.contained,
+.button.icon_contained {
+	--button-color: var(--surface-color-1);
+	--button-border-color: var(--button-bg-color);
+}
+
+.button.text,
+.button.icon_flat {
+	--button-bg-color: transparent;
+	--button-border-color: transparent;
+}
+
+.button.icon_outlined,
+.button.icon_contained,
+.button.icon_flat {
+	--button-shadow: 0;
+	width: fit-content;
+}
+
+
+/* [s-color] */
+.button.outlined[s-color="primary"],
+.button.icon_outlined[s-color="primary"] {
+	--button-color: var(--brand-color);
+	--button-border-color: var(--button-color);
+}
+
+.button.contained[s-color="primary"],
+.button.icon_contained[s-color="primary"] {
+	--button-bg-color: var(--brand-color);
+}
+
+.button.text[s-color="primary"],
+.button.icon_flat[s-color="primary"] {
+	--button-color: var(--brand-color);
+}
+
+
+.button.outlined[s-color="info"],
+.button.icon_outlined[s-color="info"] {
+	--button-color: var(--info-color);
+	--button-border-color: var(--button-color);
+}
+
+.button.contained[s-color="info"],
+.button.icon_contained[s-color="info"] {
+	--button-bg-color: var(--info-color);
+}
+
+.button.text[s-color="info"],
+.button.icon_flat[s-color="info"] {
+	--button-color: var(--info-color);
+}
+
+
+.button.outlined[s-color="success"],
+.button.icon_outlined[s-color="success"] {
+	--button-color: var(--success-color);
+	--button-border-color: var(--button-color);
+}
+
+.button.contained[s-color="success"],
+.button.icon_contained[s-color="success"] {
+	--button-bg-color: var(--success-color);
+}
+
+.button.text[s-color="success"],
+.button.icon_flat[s-color="success"] {
+	--button-color: var(--success-color);
+}
+
+
+.button.outlined[s-color="warning"],
+.button.icon_outlined[s-color="warning"] {
+	--button-color: var(--warning-color);
+	--button-border-color: var(--button-color);
+}
+
+.button.contained[s-color="warning"],
+.button.icon_contained[s-color="warning"] {
+	--button-bg-color: var(--warning-color);
+}
+
+.button.text[s-color="warning"],
+.button.icon_flat[s-color="warning"] {
+	--button-color: var(--warning-color);
+}
+
+
+.button.outlined[s-color="error"],
+.button.icon_outlined[s-color="error"] {
+	--button-color: var(--failure-color);
+	--button-border-color: var(--button-color);
+}
+
+.button.contained[s-color="error"],
+.button.icon_contained[s-color="error"] {
+	--button-bg-color: var(--failure-color);
+}
+
+.button.text[s-color="error"],
+.button.icon_flat[s-color="error"] {
+	--button-color: var(--failure-color);
+}
+
+
+.button.outlined[s-color="current"],
+.button.icon_outlined[s-color="current"] {
+	--button-color: currentcolor;
+	--button-border-color: var(--button-color);
+}
+
+.button.contained[s-color="current"],
+.button.icon_contained[s-color="current"] {
+	--button-bg-color: currentcolor;
+}
+
+.button.text[s-color="current"],
+.button.icon_flat[s-color="current"] {
+	--button-color: currentcolor;
+}
+
+
+/* loading */
+.button[loading] {
+	cursor: wait;
+}
+
+
+/* :hover */
+.button.outlined:hover,
+.button.icon_outlined:hover {
+	--button-border-color: var(--button-color);
+	--button-bg-color: var(--hover-overlay);
+}
+
+.button.text:hover,
+.button.icon_flat:hover {
+	--button-bg-color: var(--hover-overlay);
+}
+
+.button.contained:hover[s-color="primary"],
+.button.icon_contained:hover[s-color="primary"] {
+	--button-bg-color: var(--hover-brand-color);
+}
+
+.button.contained:hover[s-color="info"],
+.button.icon_contained:hover[s-color="info"] {
+	--button-bg-color: var(--hover-info-color);
+}
+
+.button.contained:hover[s-color="success"],
+.button.icon_contained:hover[s-color="success"] {
+	--button-bg-color: var(--hover-success-color);
+}
+
+.button.contained:hover[s-color="warning"],
+.button.icon_contained:hover[s-color="warning"] {
+	--button-bg-color: var(--hover-warning-color);
+}
+
+.button.contained:hover[s-color="error"],
+.button.icon_contained:hover[s-color="error"] {
+	--button-bg-color: var(--hover-failure-color);
+}
+
+.button.contained:hover[s-color="current"],
+.button.icon_contained:hover[s-color="current"] {
+	--button-bg-color: currentcolor;
+}
+
+
+/* :focus */
+.button.outlined:focus,
+.button.text:focus,
+.button.icon_outlined:focus,
+.button.icon_flat:focus {
+	--button-bg-color: var(--focus-overlay);
+}
+
+.button.contained:focus[s-color="primary"],
+.button.icon_contained:focus[s-color="primary"] {
+	--button-bg-color: var(--focus-brand-color);
+}
+
+.button.contained:focus[s-color="info"],
+.button.icon_contained:focus[s-color="info"] {
+	--button-bg-color: var(--focus-info-color);
+}
+
+.button.contained:focus[s-color="success"],
+.button.icon_contained:focus[s-color="success"] {
+	--button-bg-color: var(--focus-success-color);
+}
+
+.button.contained:focus[s-color="warning"],
+.button.icon_contained:focus[s-color="warning"] {
+	--button-bg-color: var(--focus-warning-color);
+}
+
+.button.contained:focus[s-color="error"],
+.button.icon_contained:focus[s-color="error"] {
+	--button-bg-color: var(--focus-failure-color);
+}
+
+.button.contained:focus[s-color="current"],
+.button.icon_contained:focus[s-color="current"] {
+	--button-bg-color: currentcolor;
+}
+
+
+.button.outlined:focus[s-color="primary"],
+.button.icon_outlined:focus[s-color="primary"] {
+	--button-color: var(--focus-brand-color);
+}
+
+.button.outlined:focus[s-color="info"],
+.button.icon_outlined:focus[s-color="info"] {
+	--button-color: var(--focus-info-color);
+}
+
+.button.outlined:focus[s-color="success"],
+.button.icon_outlined:focus[s-color="success"] {
+	--button-color: var(--focus-success-color);
+}
+
+.button.outlined:focus[s-color="warning"],
+.button.icon_outlined:focus[s-color="warning"] {
+	--button-color: var(--focus-warning-color);
+}
+
+.button.outlined:focus[s-color="error"],
+.button.icon_outlined:focus[s-color="error"] {
+	--button-color: var(--focus-failure-color);
+}
+
+.button.outlined:focus[s-color="current"],
+.button.icon_outlined:focus[s-color="current"] {
+	--button-color: currentcolor;
+}
+
+
+/* :active */
+.button:active {
+	transform: translateY(1px);
+}
+
+.button.outlined:active,
+.button.text:active,
+.button.icon_outlined:active,
+.button.icon_flat:active {
+	--button-bg-color: var(--active-overlay);
+}
+
+.button.contained:active[s-color="primary"],
+.button.icon_contained:active[s-color="primary"] {
+	--button-bg-color: var(--active-brand-color);
+}
+
+.button.contained:active[s-color="info"],
+.button.icon_contained:active[s-color="info"] {
+	--button-bg-color: var(--active-info-color);
+}
+
+.button.contained:active[s-color="success"],
+.button.icon_contained:active[s-color="success"] {
+	--button-bg-color: var(--active-success-color);
+}
+
+.button.contained:active[s-color="warning"],
+.button.icon_contained:active[s-color="warning"] {
+	--button-bg-color: var(--active-warning-color);
+}
+
+.button.contained:active[s-color="error"],
+.button.icon_contained:active[s-color="error"] {
+	--button-bg-color: var(--active-failure-color);
+}
+
+.button.contained:active[s-color="current"],
+.button.icon_contained:active[s-color="current"] {
+	--button-bg-color: currentcolor;
+}
+
+
+/* :disabled */
+.button:disabled,
+.button[disabled] {
+	cursor: not-allowed;
+	pointer-events: none;
+}
+
+.button.outlined:disabled,
+.button.outlined[disabled],
+.button.icon_outlined:disabled,
+.button.icon_outlined[disabled] {
+	--button-color: var(--disable-overlay);
+	--button-border-color: var(--divider-color);
+}
+
+.button.contained:disabled,
+.button.contained[disabled],
+.button.icon_contained:disabled,
+.button.icon_contained[disabled] {
+	--button-color: var(--disable-overlay);
+	--button-bg-color: var(--surface-disable-color);
+	--button-shadow: 0;
+}
+
+.button.text:disabled,
+.button.text[disabled],
+.button.icon_flat:disabled,
+.button.icon_flat[disabled] {
+	--button-color: var(--disable-overlay);
+}
+
+
+/* .size */
+.button.none {
+	--button-padding: 0;
+}
+
+.button.small {
+	composes: button_small from '@/style/Typography.module.css';
+}
+
+.button.medium {
+	composes: button_medium from '@/style/Typography.module.css';
+}
+
+.button.large {
+	composes: button_large from '@/style/Typography.module.css';
+}
+
+.button.none
+.button.icon_outlined.none,
+.button.icon_contained.none,
+.button.icon_flat.none {
+	--button-padding: 0;
+	--button-gap: 0;
+}
+
+.button.small,
+.button.icon_outlined.small,
+.button.icon_contained.small,
+.button.icon_flat.small {
+	--button-padding: calc(var(--padding-unit) * 0.8) calc(var(--padding-unit) * 0.8);
+	--button-gap: 0;
+}
+
+.button.medium,
+.button.icon_outlined.medium,
+.button.icon_contained.medium,
+.button.icon_flat.medium,
+.button.icon_outlined,
+.button.icon_contained,
+.button.icon_flat {
+	--button-padding: calc(var(--padding-unit) * 1) calc(var(--padding-unit) * 1);
+	--button-gap: 0;
+}
+
+.button.large,
+.button.icon_outlined.large,
+.button.icon_contained.large,
+.button.icon_flat.large {
+	--button-padding: calc(var(--padding-unit) * 1.2) calc(var(--padding-unit) * 1.2);
+	--button-gap: 0;
+}
+
+
+.button.none,
+.button.outlined.none,
+.button.text.none,
+.button.contained.none {
+	--button-padding: 0;
+	--button-gap: calc(var(--spacing-unit) * .5);
+}
+
+.button.small,
+.button.outlined.small,
+.button.text.small,
+.button.contained.small {
+	--button-padding: calc(var(--padding-unit) * .2) calc(var(--padding-unit) * .8);
+	--button-gap: calc(var(--spacing-unit) * .5);
+}
+
+.button.medium,
+.button.outlined.medium,
+.button.text.medium,
+.button.contained.medium,
+.button.outlined,
+.button.text,
+.button.contained {
+	--button-padding: calc(var(--padding-unit) * 0.4) calc(var(--padding-unit) * 1.2);
+	--button-gap: calc(var(--spacing-unit) * 1);
+}
+
+.button.large,
+.button.outlined.large,
+.button.text.large,
+.button.contained.large {
+	--button-padding: calc(var(--padding-unit) * 0.8) calc(var(--padding-unit) * 1.4);
+	--button-gap: calc(var(--spacing-unit) * 1.5);
+}
+
+
+/* ButtonGroup component */
+
+.button_group {
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+.button_group,
+.horizontal_orientation {
+	flex-direction: row;
+}
+
+.vertical_orientation {
+	flex-direction: column;
+}
+
+
+.button_group.horizontal_orientation .button:first-of-type {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.button_group.horizontal_orientation .button:not(:first-of-type, :last-of-type) {
+	border-radius: 0;
+}
+
+.button_group.horizontal_orientation .button:last-of-type {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+
+.button_group.vertical_orientation .button:first-of-type {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.button_group.vertical_orientation .button:not(:first-of-type, :last-of-type) {
+	border-radius: 0;
+}
+
+.button_group.vertical_orientation .button:last-of-type {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}

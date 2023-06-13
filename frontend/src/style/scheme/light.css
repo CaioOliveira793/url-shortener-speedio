@@ -1,0 +1,259 @@
+:root {
+  --color-saturation-light: 75%;
+  --color-lightness-light: 50%;
+
+  /* brand color */
+  --brand-color-light: hsl(
+		var(--brand-color-original-hue)
+		var(--color-saturation-light)
+		var(--color-lightness-light)
+	);
+  --hover-brand-color-light: hsl(
+    var(--brand-color-original-hue)
+    calc(var(--color-saturation-light) + var(--hover-action-color-offset))
+    calc(var(--color-lightness-light) + var(--hover-action-color-offset))
+  );
+  --active-brand-color-light: hsl(
+    var(--brand-color-original-hue)
+    calc(var(--color-saturation-light) + var(--active-action-color-offset))
+    calc(var(--color-lightness-light) + var(--active-action-color-offset))
+  );
+  --focus-brand-color-light: hsl(
+    var(--brand-color-original-hue)
+    calc(var(--color-saturation-light) + var(--focus-action-color-offset))
+    calc(var(--color-lightness-light) + var(--focus-action-color-offset))
+  );
+	--select-brand-color-light: hsl(
+    var(--brand-color-original-hue)
+    calc(var(--color-saturation-light) + var(--select-action-color-offset))
+    calc(var(--color-lightness-light) + var(--select-action-color-offset))
+  );
+	--disable-brand-color-light: hsl(
+    var(--brand-color-original-hue)
+    calc(var(--color-saturation-light) + var(--disable-action-color-offset))
+    calc(var(--color-lightness-light) + var(--disable-action-color-offset))
+  );
+
+  /* info color */
+  --info-color-light: hsl(
+		var(--info-color-hue)
+		var(--color-saturation-light)
+		var(--color-lightness-light)
+	);
+  --hover-info-color-light: hsl(
+    var(--info-color-hue)
+    calc(var(--color-saturation-light) + var(--hover-action-color-offset))
+    calc(var(--color-lightness-light) + var(--hover-action-color-offset))
+  );
+  --active-info-color-light: hsl(
+    var(--info-color-hue)
+    calc(var(--color-saturation-light) + var(--active-action-color-offset))
+    calc(var(--color-lightness-light) + var(--active-action-color-offset))
+  );
+  --focus-info-color-light: hsl(
+    var(--info-color-hue)
+    calc(var(--color-saturation-light) + var(--focus-action-color-offset))
+    calc(var(--color-lightness-light) + var(--focus-action-color-offset))
+  );
+	--select-info-color-light: hsl(
+    var(--info-color-hue)
+    calc(var(--color-saturation-light) + var(--select-action-color-offset))
+    calc(var(--color-lightness-light) + var(--select-action-color-offset))
+  );
+	--disable-info-color-light: hsl(
+    var(--info-color-hue)
+    calc(var(--color-saturation-light) + var(--disable-action-color-offset))
+    calc(var(--color-lightness-light) + var(--disable-action-color-offset))
+  );
+
+	/* success color */
+  --success-color-light: hsl(
+		var(--success-color-hue)
+		var(--color-saturation-light)
+		var(--color-lightness-light)
+	);
+  --hover-success-color-light: hsl(
+    var(--success-color-hue)
+    calc(var(--color-saturation-light) + var(--hover-action-color-offset))
+    calc(var(--color-lightness-light) + var(--hover-action-color-offset))
+  );
+  --active-success-color-light: hsl(
+    var(--success-color-hue)
+    calc(var(--color-saturation-light) + var(--active-action-color-offset))
+    calc(var(--color-lightness-light) + var(--active-action-color-offset))
+  );
+  --focus-success-color-light: hsl(
+    var(--success-color-hue)
+    calc(var(--color-saturation-light) + var(--focus-action-color-offset))
+    calc(var(--color-lightness-light) + var(--focus-action-color-offset))
+  );
+	--select-success-color-light: hsl(
+    var(--success-color-hue)
+    calc(var(--color-saturation-light) + var(--select-action-color-offset))
+    calc(var(--color-lightness-light) + var(--select-action-color-offset))
+  );
+	--disable-success-color-light: hsl(
+    var(--success-color-hue)
+    calc(var(--color-saturation-light) + var(--disable-action-color-offset))
+    calc(var(--color-lightness-light) + var(--disable-action-color-offset))
+  );
+
+	/* warning color */
+	--warning-color-light: hsl(
+		var(--warning-color-hue)
+		var(--color-saturation-light)
+		var(--color-lightness-light)
+	);
+  --hover-warning-color-light: hsl(
+    var(--warning-color-hue)
+    calc(var(--color-saturation-light) + var(--hover-action-color-offset))
+    calc(var(--color-lightness-light) + var(--hover-action-color-offset))
+  );
+  --active-warning-color-light: hsl(
+    var(--warning-color-hue)
+    calc(var(--color-saturation-light) + var(--active-action-color-offset))
+    calc(var(--color-lightness-light) + var(--active-action-color-offset))
+  );
+  --focus-warning-color-light: hsl(
+    var(--warning-color-hue)
+    calc(var(--color-saturation-light) + var(--focus-action-color-offset))
+    calc(var(--color-lightness-light) + var(--focus-action-color-offset))
+  );
+	--select-warning-color-light: hsl(
+    var(--warning-color-hue)
+    calc(var(--color-saturation-light) + var(--select-action-color-offset))
+    calc(var(--color-lightness-light) + var(--select-action-color-offset))
+  );
+	--disable-warning-color-light: hsl(
+    var(--warning-color-hue)
+    calc(var(--color-saturation-light) + var(--disable-action-color-offset))
+    calc(var(--color-lightness-light) + var(--disable-action-color-offset))
+  );
+
+	/* failure color */
+	--failure-color-light: hsl(
+		var(--failure-color-hue)
+		var(--color-saturation-light)
+		var(--color-lightness-light)
+	);
+  --hover-failure-color-light: hsl(
+    var(--failure-color-hue)
+    calc(var(--color-saturation-light) + var(--hover-action-color-offset))
+    calc(var(--color-lightness-light) + var(--hover-action-color-offset))
+  );
+  --active-failure-color-light: hsl(
+    var(--failure-color-hue)
+    calc(var(--color-saturation-light) + var(--active-action-color-offset))
+    calc(var(--color-lightness-light) + var(--active-action-color-offset))
+  );
+  --focus-failure-color-light: hsl(
+    var(--failure-color-hue)
+    calc(var(--color-saturation-light) + var(--focus-action-color-offset))
+    calc(var(--color-lightness-light) + var(--focus-action-color-offset))
+  );
+	--select-failure-color-light: hsl(
+    var(--failure-color-hue)
+    calc(var(--color-saturation-light) + var(--select-action-color-offset))
+    calc(var(--color-lightness-light) + var(--select-action-color-offset))
+  );
+	--disable-failure-color-light: hsl(
+    var(--failure-color-hue)
+    calc(var(--color-saturation-light) + var(--disable-action-color-offset))
+    calc(var(--color-lightness-light) + var(--disable-action-color-offset))
+  );
+
+	/* action overlay */
+  --hover-overlay-light: rgb(0 0 0 / var(--hover-overlay-transparency));
+	--active-overlay-light: rgb(0 0 0 / var(--active-overlay-transparency));
+	--focus-overlay-light: rgb(0 0 0 / var(--focus-overlay-transparency));
+	--select-overlay-light: rgb(0 0 0 / var(--select-overlay-transparency));
+	--disable-overlay-light: rgb(0 0 0 / var(--disable-overlay-transparency));
+
+	/* text color */
+  --text-color-1-light: hsl(var(--brand-color-original-hue) var(--color-saturation) 10%);
+  --text-color-2-light: hsl(var(--brand-color-original-hue) 30% 30%);
+  --text-link-color-light: hsl(225 85% 45%);
+
+	/* surface color */
+  --surface-color-1-light: hsl(var(--brand-color-original-hue) 20% 99%);
+  --surface-color-2-light: hsl(var(--brand-color-original-hue) 20% 92%);
+  --surface-color-3-light: hsl(var(--brand-color-original-hue) 25% 90%);
+  --surface-color-4-light: hsl(var(--brand-color-original-hue) 20% 85%);
+	--surface-disable-color-light: #d0d0d0;
+
+  /* elevation */
+  --border-color-light: hsl(var(--brand-color-original-hue) 10% 70%);
+  --shadow-color-hsl-light: var(--brand-color-original-hue) 10% 20%;
+  --shadow-strength-light: .1;
+}
+
+[color-scheme="light"] {
+  color-scheme: light;
+
+	/* brand color */
+  --brand-color: var(--brand-color-light);
+  --color-saturation: var(--color-saturation-light);
+  --color-lightness: var(--color-lightness-light);
+
+	--hover-brand-color: var(--hover-brand-color-light);
+	--active-brand-color: var(--active-brand-color-light);
+	--focus-brand-color: var(--focus-brand-color-light);
+	--select-brand-color: var(--select-brand-color-light);
+	--disable-brand-color: var(--disable-brand-color-light);
+
+	/* info color */
+	--info-color: var(--info-color-light);
+	--hover-info-color: var(--hover-info-color-light);
+	--active-info-color: var(--active-info-color-light);
+	--focus-info-color: var(--focus-info-color-light);
+	--select-info-color: var(--select-info-color-light);
+	--disable-info-color: var(--disable-info-color-light);
+
+	/* success color */
+	--success-color: var(--success-color-light);
+	--hover-success-color: var(--hover-success-color-light);
+	--active-success-color: var(--active-success-color-light);
+	--focus-success-color: var(--focus-success-color-light);
+	--select-success-color: var(--select-success-color-light);
+	--disable-success-color: var(--disable-success-color-light);
+
+	/* warning color */
+	--warning-color: var(--warning-color-light);
+	--hover-warning-color: var(--hover-warning-color-light);
+	--active-warning-color: var(--active-warning-color-light);
+	--focus-warning-color: var(--focus-warning-color-light);
+	--select-warning-color: var(--select-warning-color-light);
+	--disable-warning-color: var(--disable-warning-color-light);
+
+	/* failure color */
+	--failure-color: var(--failure-color-light);
+	--hover-failure-color: var(--hover-failure-color-light);
+	--active-failure-color: var(--active-failure-color-light);
+	--focus-failure-color: var(--focus-failure-color-light);
+	--select-failure-color: var(--select-failure-color-light);
+	--disable-failure-color: var(--disable-failure-color-light);
+
+	/* action overlay */
+  --active-overlay: var(--active-overlay-light);
+	--select-overlay: var(--select-overlay-light);
+	--focus-overlay: var(--focus-overlay-light);
+	--hover-overlay: var(--hover-overlay-light);
+	--disable-overlay: var(--disable-overlay-light);
+
+	/* text color */
+  --text-color-1: var(--text-color-1-light);
+  --text-color-2: var(--text-color-2-light);
+  --text-link-color: var(--text-link-color-light);
+
+	/* surface color */
+  --surface-color-1: var(--surface-color-1-light);
+  --surface-color-2: var(--surface-color-2-light);
+  --surface-color-3: var(--surface-color-3-light);
+  --surface-color-4: var(--surface-color-4-light);
+	--surface-disable-color: var(--surface-disable-color-light);
+
+  /* elevation */
+  --border-color: var(--border-color-light);
+  --shadow-color-hsl: var(--shadow-color-hsl-light);
+  --shadow-strength: var(--shadow-strength-light);
+}
