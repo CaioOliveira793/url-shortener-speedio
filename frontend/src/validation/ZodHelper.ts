@@ -18,7 +18,7 @@ export async function zodFormValidation<T, Schema extends ZodType<T>>(
 
 export type ZodFormValidator<T> = (data: T) => Promise<ZodFieldError<T>>;
 
-export function zodFormAdapter<T, Schema extends ZodType<T>>(
+export function zodFormAdapter<T, Schema extends ZodType<T> = ZodType<T>>(
 	schema: Schema
 ): ZodFormValidator<T> {
 	return (data: T) => zodFormValidation(schema, data);
