@@ -28,3 +28,15 @@ export function createGlobalConfigOptions(): ConfigModuleOptions {
 
 	return options;
 }
+
+export function logLevel() {
+	switch (env['NODE_ENV'] as NodeEnv) {
+		case 'production':
+			return 'info';
+
+		case 'test':
+		case 'development':
+		default:
+			return 'debug';
+	}
+}

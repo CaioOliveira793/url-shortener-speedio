@@ -9,6 +9,7 @@ export interface ResourceLocation {
 
 /// from {ZodIssueCode}
 export const enum DataIssueType {
+	InvalidContent = 'invalid_content',
 	InvalidType = 'invalid_type',
 	InvalidLiteral = 'invalid_literal',
 	Custom = 'custom',
