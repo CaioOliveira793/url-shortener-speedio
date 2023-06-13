@@ -8,6 +8,7 @@ import { SlugGenerationProvider } from '../url/service/SlugGenerationService';
 import { UserRepositoryProvider } from './service/UserRepository';
 import { JWTService } from './service/JWTService';
 import { AuthController } from './controller/AuthController';
+import { AuthService } from './service/AuthService';
 
 @Module({
 	providers: [
@@ -16,7 +17,9 @@ import { AuthController } from './controller/AuthController';
 		JWTEncryptionProvider,
 		SlugGenerationProvider,
 		UserRepositoryProvider,
+		AuthService,
 	],
 	controllers: [AuthController, UserController],
+	exports: [AuthService],
 })
 export class IamModule {}

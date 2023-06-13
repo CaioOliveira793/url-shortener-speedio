@@ -1,30 +1,14 @@
-import { Inject, PipeTransform, Injectable } from '@nestjs/common';
-import { tokenFromBearerAuthScheme } from '@/http/AuthenticationScheme';
-import { UlidSchema } from '@/validation/Schema';
+import { PipeTransform, Injectable } from '@nestjs/common';
 import { Token } from '@/module/iam/type/Token';
-import {
-	TOKEN_ENCRYPTION_PROVIDER,
-	TokenEncryptionService,
-} from '@/module/iam/service/EncryptionService';
+import { AuthService } from '@/module/iam/service/AuthService';
 
 @Injectable()
 export class AuthTokenPipe implements PipeTransform {
-	constructor(
-		@Inject(TOKEN_ENCRYPTION_PROVIDER)
-		private readonly tokenEncryption: TokenEncryptionService
-	) {}
+	constructor(private readonly authService: AuthService) {}
 
 	public async transform(
 		authenticationHeader: unknown
 	): Promise<Token<string>> {
-		const tokenStr = tokenFromBearerAuthScheme(authenticationHeader);
-
-		const token = await Token.verify(
-			tokenStr,
-			this.tokenEncryption,
-			UlidSchema
-		);
-
-		return token;
+		return this.authService.bearerAuthScheme(authenticationHeader);
 	}
 }
