@@ -1,7 +1,8 @@
 import { isBefore } from 'date-fns';
-import { z } from 'zod';
+import { ZodType, z } from 'zod';
 import { PrimitiveValidationConfig } from './ZodHelper';
 import { maxOfNChars, minOfNChars } from '@/text/ValidationMessage';
+import type { CreateShortUrlData } from '@/service/ShortUrl';
 
 const SLUG_REGEX = /^[\da-zA-Z-_]{1,26}$/;
 const SLUG_MIN_LENGTH = 1;
@@ -23,5 +24,6 @@ export const CreateShortUrlSchema = z.object({
 			path: [],
 			message: 'tempo de expiração já atingido',
 		})
-		.nullable(),
-});
+		.nullable()
+		.default(null), // FIXME: zod default does not works
+}) as ZodType<CreateShortUrlData>;
