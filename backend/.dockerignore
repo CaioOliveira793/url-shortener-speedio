@@ -1,0 +1,14 @@
+# ignore all files by default
+*
+
+# permitted folders:
+!src
+!test:e2e
+!rollup/*
+
+# permitted files:
+!package*.json
+!pnpm-lock.yaml
+!.npmrc
+!tsconfig.json
+!LICENSE
