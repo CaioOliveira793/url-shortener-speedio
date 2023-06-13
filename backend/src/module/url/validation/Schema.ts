@@ -14,5 +14,4 @@ export const CreateShortUrlSchema = z.object({
 			message: 'Expiration time already reached',
 		})
 		.nullable(),
-	slug: SlugSchema.nullable(),
 });
