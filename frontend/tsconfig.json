@@ -1,0 +1,74 @@
+{
+	"extends": "@vue/tsconfig/tsconfig.dom.json",
+	"compilerOptions": {
+		"incremental": false,
+		"target": "ES2022",
+		"lib": [
+			"ES2022",
+			"DOM"
+		],
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"noEmit": true,
+		"allowJs": true,
+		"checkJs": true,
+		"jsx": "preserve",
+		"declaration": false,
+		"declarationMap": false,
+		"sourceMap": true,
+		"rootDir": "./",
+		"baseUrl": "./",
+		"paths": {
+			"@/*": [
+				"./src/*"
+			],
+			"@test/*": [
+				"./../test/*"
+			]
+		},
+		"outDir": "dist",
+		"isolatedModules": true,
+		"resolveJsonModule": true,
+		"removeComments": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"stripInternal": true,
+		"esModuleInterop": false,
+		"strict": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"strictBindCallApply": true,
+		"strictPropertyInitialization": true,
+		"alwaysStrict": true,
+		"noImplicitAny": true,
+		"noImplicitThis": true,
+		"noImplicitReturns": true,
+		"noImplicitOverride": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": false,
+		"noPropertyAccessFromIndexSignature": true,
+		"preserveConstEnums": true,
+		"exactOptionalPropertyTypes": true,
+		"useUnknownInCatchVariables": true,
+		"allowUnreachableCode": false,
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+		"downlevelIteration": false,
+		"skipLibCheck": true
+	},
+	"include": [
+		"**/*.vue",
+		"src/**/*",
+		"test/**/*",
+		"vite.config.*",
+		"vitest.config.*",
+		"env.d.ts"
+	],
+	"exclude": [
+		"node_modules/**",
+		"dist/**",
+		"coverage/**"
+	]
+}
