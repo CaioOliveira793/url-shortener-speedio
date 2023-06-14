@@ -33,130 +33,130 @@
 	width: 100%;
 }
 
-.button.outlined,
-.button.icon_outlined {
+.outlined,
+.icon_outlined {
 	--button-bg-color: transparent;
 }
 
-.button.contained,
-.button.icon_contained {
+.contained,
+.icon_contained {
 	--button-color: var(--surface-color-1);
 	--button-border-color: var(--button-bg-color);
 }
 
-.button.text,
-.button.icon_flat {
+.text,
+.icon_flat {
 	--button-bg-color: transparent;
 	--button-border-color: transparent;
 }
 
-.button.icon_outlined,
-.button.icon_contained,
-.button.icon_flat {
+.icon_outlined,
+.icon_contained,
+.icon_flat {
 	--button-shadow: 0;
 	width: fit-content;
 }
 
 
 /* [s-color] */
-.button.outlined[s-color="primary"],
-.button.icon_outlined[s-color="primary"] {
+.outlined[s-color="primary"],
+.icon_outlined[s-color="primary"] {
 	--button-color: var(--brand-color);
 	--button-border-color: var(--button-color);
 }
 
-.button.contained[s-color="primary"],
-.button.icon_contained[s-color="primary"] {
+.contained[s-color="primary"],
+.icon_contained[s-color="primary"] {
 	--button-bg-color: var(--brand-color);
 }
 
-.button.text[s-color="primary"],
-.button.icon_flat[s-color="primary"] {
+.text[s-color="primary"],
+.icon_flat[s-color="primary"] {
 	--button-color: var(--brand-color);
 }
 
 
-.button.outlined[s-color="info"],
-.button.icon_outlined[s-color="info"] {
+.outlined[s-color="info"],
+.icon_outlined[s-color="info"] {
 	--button-color: var(--info-color);
 	--button-border-color: var(--button-color);
 }
 
-.button.contained[s-color="info"],
-.button.icon_contained[s-color="info"] {
+.contained[s-color="info"],
+.icon_contained[s-color="info"] {
 	--button-bg-color: var(--info-color);
 }
 
-.button.text[s-color="info"],
-.button.icon_flat[s-color="info"] {
+.text[s-color="info"],
+.icon_flat[s-color="info"] {
 	--button-color: var(--info-color);
 }
 
 
-.button.outlined[s-color="success"],
-.button.icon_outlined[s-color="success"] {
+.outlined[s-color="success"],
+.icon_outlined[s-color="success"] {
 	--button-color: var(--success-color);
 	--button-border-color: var(--button-color);
 }
 
-.button.contained[s-color="success"],
-.button.icon_contained[s-color="success"] {
+.contained[s-color="success"],
+.icon_contained[s-color="success"] {
 	--button-bg-color: var(--success-color);
 }
 
-.button.text[s-color="success"],
-.button.icon_flat[s-color="success"] {
+.text[s-color="success"],
+.icon_flat[s-color="success"] {
 	--button-color: var(--success-color);
 }
 
 
-.button.outlined[s-color="warning"],
-.button.icon_outlined[s-color="warning"] {
+.outlined[s-color="warning"],
+.icon_outlined[s-color="warning"] {
 	--button-color: var(--warning-color);
 	--button-border-color: var(--button-color);
 }
 
-.button.contained[s-color="warning"],
-.button.icon_contained[s-color="warning"] {
+.contained[s-color="warning"],
+.icon_contained[s-color="warning"] {
 	--button-bg-color: var(--warning-color);
 }
 
-.button.text[s-color="warning"],
-.button.icon_flat[s-color="warning"] {
+.text[s-color="warning"],
+.icon_flat[s-color="warning"] {
 	--button-color: var(--warning-color);
 }
 
 
-.button.outlined[s-color="error"],
-.button.icon_outlined[s-color="error"] {
+.outlined[s-color="error"],
+.icon_outlined[s-color="error"] {
 	--button-color: var(--failure-color);
 	--button-border-color: var(--button-color);
 }
 
-.button.contained[s-color="error"],
-.button.icon_contained[s-color="error"] {
+.contained[s-color="error"],
+.icon_contained[s-color="error"] {
 	--button-bg-color: var(--failure-color);
 }
 
-.button.text[s-color="error"],
-.button.icon_flat[s-color="error"] {
+.text[s-color="error"],
+.icon_flat[s-color="error"] {
 	--button-color: var(--failure-color);
 }
 
 
-.button.outlined[s-color="current"],
-.button.icon_outlined[s-color="current"] {
+.outlined[s-color="current"],
+.icon_outlined[s-color="current"] {
 	--button-color: currentcolor;
 	--button-border-color: var(--button-color);
 }
 
-.button.contained[s-color="current"],
-.button.icon_contained[s-color="current"] {
+.contained[s-color="current"],
+.icon_contained[s-color="current"] {
 	--button-bg-color: currentcolor;
 }
 
-.button.text[s-color="current"],
-.button.icon_flat[s-color="current"] {
+.text[s-color="current"],
+.icon_flat[s-color="current"] {
 	--button-color: currentcolor;
 }
 
@@ -168,114 +168,114 @@
 
 
 /* :hover */
-.button.outlined:hover,
-.button.icon_outlined:hover {
+.outlined:hover,
+.icon_outlined:hover {
 	--button-border-color: var(--button-color);
 	--button-bg-color: var(--hover-overlay);
 }
 
-.button.text:hover,
-.button.icon_flat:hover {
+.text:hover,
+.icon_flat:hover {
 	--button-bg-color: var(--hover-overlay);
 }
 
-.button.contained:hover[s-color="primary"],
-.button.icon_contained:hover[s-color="primary"] {
+.contained:hover[s-color="primary"],
+.icon_contained:hover[s-color="primary"] {
 	--button-bg-color: var(--hover-brand-color);
 }
 
-.button.contained:hover[s-color="info"],
-.button.icon_contained:hover[s-color="info"] {
+.contained:hover[s-color="info"],
+.icon_contained:hover[s-color="info"] {
 	--button-bg-color: var(--hover-info-color);
 }
 
-.button.contained:hover[s-color="success"],
-.button.icon_contained:hover[s-color="success"] {
+.contained:hover[s-color="success"],
+.icon_contained:hover[s-color="success"] {
 	--button-bg-color: var(--hover-success-color);
 }
 
-.button.contained:hover[s-color="warning"],
-.button.icon_contained:hover[s-color="warning"] {
+.contained:hover[s-color="warning"],
+.icon_contained:hover[s-color="warning"] {
 	--button-bg-color: var(--hover-warning-color);
 }
 
-.button.contained:hover[s-color="error"],
-.button.icon_contained:hover[s-color="error"] {
+.contained:hover[s-color="error"],
+.icon_contained:hover[s-color="error"] {
 	--button-bg-color: var(--hover-failure-color);
 }
 
-.button.contained:hover[s-color="current"],
-.button.icon_contained:hover[s-color="current"] {
+.contained:hover[s-color="current"],
+.icon_contained:hover[s-color="current"] {
 	--button-bg-color: currentcolor;
 }
 
 
 /* :focus */
-.button.outlined:focus,
-.button.text:focus,
-.button.icon_outlined:focus,
-.button.icon_flat:focus {
+.outlined:focus,
+.text:focus,
+.icon_outlined:focus,
+.icon_flat:focus {
 	--button-bg-color: var(--focus-overlay);
 }
 
-.button.contained:focus[s-color="primary"],
-.button.icon_contained:focus[s-color="primary"] {
+.contained:focus[s-color="primary"],
+.icon_contained:focus[s-color="primary"] {
 	--button-bg-color: var(--focus-brand-color);
 }
 
-.button.contained:focus[s-color="info"],
-.button.icon_contained:focus[s-color="info"] {
+.contained:focus[s-color="info"],
+.icon_contained:focus[s-color="info"] {
 	--button-bg-color: var(--focus-info-color);
 }
 
-.button.contained:focus[s-color="success"],
-.button.icon_contained:focus[s-color="success"] {
+.contained:focus[s-color="success"],
+.icon_contained:focus[s-color="success"] {
 	--button-bg-color: var(--focus-success-color);
 }
 
-.button.contained:focus[s-color="warning"],
-.button.icon_contained:focus[s-color="warning"] {
+.contained:focus[s-color="warning"],
+.icon_contained:focus[s-color="warning"] {
 	--button-bg-color: var(--focus-warning-color);
 }
 
-.button.contained:focus[s-color="error"],
-.button.icon_contained:focus[s-color="error"] {
+.contained:focus[s-color="error"],
+.icon_contained:focus[s-color="error"] {
 	--button-bg-color: var(--focus-failure-color);
 }
 
-.button.contained:focus[s-color="current"],
-.button.icon_contained:focus[s-color="current"] {
+.contained:focus[s-color="current"],
+.icon_contained:focus[s-color="current"] {
 	--button-bg-color: currentcolor;
 }
 
 
-.button.outlined:focus[s-color="primary"],
-.button.icon_outlined:focus[s-color="primary"] {
+.outlined:focus[s-color="primary"],
+.icon_outlined:focus[s-color="primary"] {
 	--button-color: var(--focus-brand-color);
 }
 
-.button.outlined:focus[s-color="info"],
-.button.icon_outlined:focus[s-color="info"] {
+.outlined:focus[s-color="info"],
+.icon_outlined:focus[s-color="info"] {
 	--button-color: var(--focus-info-color);
 }
 
-.button.outlined:focus[s-color="success"],
-.button.icon_outlined:focus[s-color="success"] {
+.outlined:focus[s-color="success"],
+.icon_outlined:focus[s-color="success"] {
 	--button-color: var(--focus-success-color);
 }
 
-.button.outlined:focus[s-color="warning"],
-.button.icon_outlined:focus[s-color="warning"] {
+.outlined:focus[s-color="warning"],
+.icon_outlined:focus[s-color="warning"] {
 	--button-color: var(--focus-warning-color);
 }
 
-.button.outlined:focus[s-color="error"],
-.button.icon_outlined:focus[s-color="error"] {
+.outlined:focus[s-color="error"],
+.icon_outlined:focus[s-color="error"] {
 	--button-color: var(--focus-failure-color);
 }
 
-.button.outlined:focus[s-color="current"],
-.button.icon_outlined:focus[s-color="current"] {
+.outlined:focus[s-color="current"],
+.icon_outlined:focus[s-color="current"] {
 	--button-color: currentcolor;
 }
 
@@ -285,40 +285,40 @@
 	transform: translateY(1px);
 }
 
-.button.outlined:active,
-.button.text:active,
-.button.icon_outlined:active,
-.button.icon_flat:active {
+.outlined:active,
+.text:active,
+.icon_outlined:active,
+.icon_flat:active {
 	--button-bg-color: var(--active-overlay);
 }
 
-.button.contained:active[s-color="primary"],
-.button.icon_contained:active[s-color="primary"] {
+.contained:active[s-color="primary"],
+.icon_contained:active[s-color="primary"] {
 	--button-bg-color: var(--active-brand-color);
 }
 
-.button.contained:active[s-color="info"],
-.button.icon_contained:active[s-color="info"] {
+.contained:active[s-color="info"],
+.icon_contained:active[s-color="info"] {
 	--button-bg-color: var(--active-info-color);
 }
 
-.button.contained:active[s-color="success"],
-.button.icon_contained:active[s-color="success"] {
+.contained:active[s-color="success"],
+.icon_contained:active[s-color="success"] {
 	--button-bg-color: var(--active-success-color);
 }
 
-.button.contained:active[s-color="warning"],
-.button.icon_contained:active[s-color="warning"] {
+.contained:active[s-color="warning"],
+.icon_contained:active[s-color="warning"] {
 	--button-bg-color: var(--active-warning-color);
 }
 
-.button.contained:active[s-color="error"],
-.button.icon_contained:active[s-color="error"] {
+.contained:active[s-color="error"],
+.icon_contained:active[s-color="error"] {
 	--button-bg-color: var(--active-failure-color);
 }
 
-.button.contained:active[s-color="current"],
-.button.icon_contained:active[s-color="current"] {
+.contained:active[s-color="current"],
+.icon_contained:active[s-color="current"] {
 	--button-bg-color: currentcolor;
 }
 
@@ -330,115 +330,115 @@
 	pointer-events: none;
 }
 
-.button.outlined:disabled,
-.button.outlined[disabled],
-.button.icon_outlined:disabled,
-.button.icon_outlined[disabled] {
+.outlined:disabled,
+.outlined[disabled],
+.icon_outlined:disabled,
+.icon_outlined[disabled] {
 	--button-color: var(--disable-overlay);
 	--button-border-color: var(--divider-color);
 }
 
-.button.contained:disabled,
-.button.contained[disabled],
-.button.icon_contained:disabled,
-.button.icon_contained[disabled] {
+.contained:disabled,
+.contained[disabled],
+.icon_contained:disabled,
+.icon_contained[disabled] {
 	--button-color: var(--disable-overlay);
 	--button-bg-color: var(--surface-disable-color);
 	--button-shadow: 0;
 }
 
-.button.text:disabled,
-.button.text[disabled],
-.button.icon_flat:disabled,
-.button.icon_flat[disabled] {
+.text:disabled,
+.text[disabled],
+.icon_flat:disabled,
+.icon_flat[disabled] {
 	--button-color: var(--disable-overlay);
 }
 
 
 /* .size */
-.button.none {
+.none {
 	--button-padding: 0;
 }
 
-.button.small {
+.small {
 	composes: button_small from '@/style/typography.module.css';
 }
 
-.button.medium {
+.medium {
 	composes: button_medium from '@/style/typography.module.css';
 }
 
-.button.large {
+.large {
 	composes: button_large from '@/style/typography.module.css';
 }
 
-.button.none
-.button.icon_outlined.none,
-.button.icon_contained.none,
-.button.icon_flat.none {
+.none
+.icon_outlined.none,
+.icon_contained.none,
+.icon_flat.none {
 	--button-padding: 0;
 	--button-gap: 0;
 }
 
-.button.small,
-.button.icon_outlined.small,
-.button.icon_contained.small,
-.button.icon_flat.small {
+.small,
+.icon_outlined.small,
+.icon_contained.small,
+.icon_flat.small {
 	--button-padding: calc(var(--padding-unit) * 0.8) calc(var(--padding-unit) * 0.8);
 	--button-gap: 0;
 }
 
-.button.medium,
-.button.icon_outlined.medium,
-.button.icon_contained.medium,
-.button.icon_flat.medium,
-.button.icon_outlined,
-.button.icon_contained,
-.button.icon_flat {
+.medium,
+.icon_outlined.medium,
+.icon_contained.medium,
+.icon_flat.medium,
+.icon_outlined,
+.icon_contained,
+.icon_flat {
 	--button-padding: calc(var(--padding-unit) * 1) calc(var(--padding-unit) * 1);
 	--button-gap: 0;
 }
 
-.button.large,
-.button.icon_outlined.large,
-.button.icon_contained.large,
-.button.icon_flat.large {
+.large,
+.icon_outlined.large,
+.icon_contained.large,
+.icon_flat.large {
 	--button-padding: calc(var(--padding-unit) * 1.2) calc(var(--padding-unit) * 1.2);
 	--button-gap: 0;
 }
 
 
-.button.none,
-.button.outlined.none,
-.button.text.none,
-.button.contained.none {
+.none,
+.outlined.none,
+.text.none,
+.contained.none {
 	--button-padding: 0;
 	--button-gap: calc(var(--spacing-unit) * .5);
 }
 
-.button.small,
-.button.outlined.small,
-.button.text.small,
-.button.contained.small {
+.small,
+.outlined.small,
+.text.small,
+.contained.small {
 	--button-padding: calc(var(--padding-unit) * .2) calc(var(--padding-unit) * .8);
 	--button-gap: calc(var(--spacing-unit) * .5);
 }
 
-.button.medium,
-.button.outlined.medium,
-.button.text.medium,
-.button.contained.medium,
-.button.outlined,
-.button.text,
-.button.contained {
+.medium,
+.outlined.medium,
+.text.medium,
+.contained.medium,
+.outlined,
+.text,
+.contained {
 	--button-padding: calc(var(--padding-unit) * 0.4) calc(var(--padding-unit) * 1.2);
 	--button-gap: calc(var(--spacing-unit) * 1);
 }
 
-.button.large,
-.button.outlined.large,
-.button.text.large,
-.button.contained.large {
+.large,
+.outlined.large,
+.text.large,
+.contained.large {
 	--button-padding: calc(var(--padding-unit) * 0.8) calc(var(--padding-unit) * 1.4);
 	--button-gap: calc(var(--spacing-unit) * 1.5);
 }

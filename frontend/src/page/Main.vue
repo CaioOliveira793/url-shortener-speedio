@@ -13,6 +13,7 @@ import { CreateShortUrlSchema } from '@/validation/ShortUrl';
 import { AppPath } from '@/config/router';
 import ShortUrlEntry from '@/component/ShortUrlEntry.vue';
 import TextInput from '@/component/form/TextInput.vue';
+import VButton from '@/component/form/VButton.vue';
 
 const router = useRouter();
 
@@ -65,13 +66,9 @@ const longUrl = useFieldState({
 				v-bind="longUrl.prop"
 				v-on="longUrl.event"
 			/>
-			<button
-				type="submit"
-				class="button contained medium button_medium fullwidth"
-				s-color="primary"
-			>
+			<VButton type="submit" variant="contained" size="large" fullwidth>
 				Criar
-			</button>
+			</VButton>
 		</form>
 
 		<p :class="$style.page_description">
