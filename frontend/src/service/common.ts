@@ -1,5 +1,5 @@
 import { ApiClientError, ApiErrorType } from '@/error/api';
-import { isValid as isValidDate, parseISO as parseDateISO8601 } from 'date-fns';
+import { jsonDeserializer } from '@/util/serde';
 
 export function apiEndpoint(path: string): string {
 	return import.meta.env.APP_API_ADDRESS + path;
@@ -14,17 +14,10 @@ export type ResponseResult<Ok, Err> =
 	| ResultType<true, Ok>
 	| ResultType<false, Err>;
 
-export function jsonParceReviver(_key: string, value: unknown): unknown | Date {
-	if (typeof value !== 'string') return value;
-	const date = parseDateISO8601(value);
-	if (!isValidDate(date)) return value;
-	return date;
-}
-
 export async function parseJsonFromResponse(response: Response): Promise<any> {
 	const str = await response.text();
 	try {
-		return JSON.parse(str, jsonParceReviver);
+		return jsonDeserializer(str);
 	} catch (err: unknown) {
 		throw new ApiClientError(
 			ApiErrorType.InvalidResponseBody,

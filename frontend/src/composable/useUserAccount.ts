@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { ref, type Ref } from 'vue';
+import { useStorage, type RemovableRef } from '@vueuse/core';
 import { useRouter, type NavigationFailure } from 'vue-router';
 import { AppPath } from '@/config/router';
 import type {
@@ -10,8 +10,10 @@ import type {
 	UserResource,
 } from '@/service/Iam';
 import { authenticateUser, createUser } from '@/service/Iam';
+import { jsonDeserializer, jsonSerializer } from '@/util/serde';
 
-export const ACCOUNT_STORE_KEY = 'user_account';
+export const USER_ACCOUNT_KEY = 'user_account';
+const USER_ACCOUNT_STORAGE_KEY = 'user_account';
 
 export interface UserAccountState {
 	token: string;
@@ -19,7 +21,7 @@ export interface UserAccountState {
 }
 
 export interface UseUserAccountReturn {
-	state: Ref<UserAccountState | null>;
+	state: RemovableRef<UserAccountState | null>;
 
 	/**
 	 * Authenticate the user updating the current user account.
@@ -34,14 +36,20 @@ export interface UseUserAccountReturn {
 
 	/**
 	 * Sign out exiting the user session and navigating to the login page.
-	 * @param redirectPath pathname to redirect from the login page after a user authentication.
 	 */
 	signOut(redirectPath?: string): Promise<void | NavigationFailure>;
 }
 
 function useUserAccountComposable(): UseUserAccountReturn {
-	const initialState: UserAccountState | null = null; // TODO: load persisted/authenticated user
-	const state = ref<UserAccountState | null>(initialState);
+	const state = useStorage<UserAccountState | null>(
+		USER_ACCOUNT_STORAGE_KEY,
+		null,
+		globalThis.localStorage,
+		{
+			writeDefaults: true,
+			serializer: { read: jsonDeserializer, write: jsonSerializer },
+		}
+	);
 
 	const router = useRouter();
 
@@ -80,6 +88,6 @@ function useUserAccountComposable(): UseUserAccountReturn {
 }
 
 export const useUserAccount = defineStore<
-	typeof ACCOUNT_STORE_KEY,
+	typeof USER_ACCOUNT_KEY,
 	UseUserAccountReturn
->(ACCOUNT_STORE_KEY, useUserAccountComposable);
+>(USER_ACCOUNT_KEY, useUserAccountComposable);

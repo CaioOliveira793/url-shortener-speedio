@@ -52,6 +52,7 @@
 	},
 	"dependencies": {
 		"@iconify-json/fa6-solid": "^1.1.13",
+		"@vueuse/core": "^10.1.2",
 		"date-fns": "^2.30.0",
 		"final-form": "^4.20.9",
 		"nanoid": "^4.0.2",

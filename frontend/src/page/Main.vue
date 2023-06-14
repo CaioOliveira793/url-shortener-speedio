@@ -1,13 +1,9 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { TextInputTransform, useFieldState, useForm } from 'vue-typed-form';
-import {
-	createShortUrl,
-	type CreateShortUrlData,
-	type ShortUrlResource,
-} from '@/service/ShortUrl';
+import { differenceInHours } from 'date-fns';
+import { type CreateShortUrlData } from '@/service/ShortUrl';
 import { zodFormAdapter } from '@/validation/ZodHelper';
 import { CreateShortUrlSchema } from '@/validation/ShortUrl';
 import { AppPath } from '@/config/router';
@@ -15,20 +11,28 @@ import ShortUrlEntry from '@/component/ShortUrlEntry.vue';
 import TextInput from '@/component/form/TextInput.vue';
 import VButton from '@/component/form/VButton.vue';
 import Typography from '@/style/typography.module.css';
+import { useUserAccount } from '@/composable/useUserAccount';
+import { useShortUrlHistory } from '@/composable/useShortUrlHistory';
+
+const RelativeTimeFormatter = new Intl.RelativeTimeFormat('pt-BR', {
+	style: 'short',
+	numeric: 'auto',
+});
 
 const router = useRouter();
 
-const createdUrls = ref<ShortUrlResource[]>([]);
+const userAccount = useUserAccount();
+const urlHistory = useShortUrlHistory();
 
 const formApi = useForm<CreateShortUrlData>({
 	// FIXME: expires should be set by default from zod.
 	initialValues: { expires: null },
 	submit: async (data, formApi) => {
-		const result = await createShortUrl(data);
+		const authToken = userAccount.state?.token ?? null;
+		const result = await urlHistory.createUrl(data, authToken);
 
 		switch (result.type) {
 			case 'SUCCESS': {
-				createdUrls.value.unshift(result.value);
 				formApi.reset({ expires: null, long_url: '' });
 				break;
 			}
@@ -80,17 +84,27 @@ const longUrl = useFieldState({
 				todos os lugares onde você quiser compartilhar.
 			</p>
 
-			<p>
+			<p v-if="!userAccount.state?.user">
 				<router-link :to="AppPath.SignIn">Entrar</router-link> -
 				<router-link :to="AppPath.SignUp">Criar minha conta</router-link>
+			</p>
+			<p v-else :class="Typography.body1">
+				Logado como {{ userAccount.state.user.name }} à
+				{{
+					RelativeTimeFormatter.format(
+						differenceInHours(new Date(), userAccount.state.user.last_auth),
+						'hours'
+					)
+				}}
 			</p>
 		</div>
 
 		<div :class="$style.shortened_url_list_container">
 			<h4 :class="Typography.heading4">Url encurtadas</h4>
+			<p>Suas urls encurtadas neste dispositivo</p>
 
 			<ul>
-				<li v-for="shortUrl in createdUrls" :key="shortUrl.slug">
+				<li v-for="shortUrl in urlHistory.urls" :key="shortUrl.slug">
 					<ShortUrlEntry :short-url="shortUrl" />
 				</li>
 			</ul>
