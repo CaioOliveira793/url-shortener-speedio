@@ -10,20 +10,21 @@ import {
 import { zodFormAdapter } from '@/validation/ZodHelper';
 import { CreateUserSchema } from '@/validation/Iam';
 import { AppPath } from '@/config/router';
-import { createUser, type CreateUserData } from '@/service/Iam';
+import type { CreateUserData } from '@/service/Iam';
 import TextInput from '@/component/form/TextInput.vue';
 import VButton from '@/component/form/VButton.vue';
 import Typography from '@/style/typography.module.css';
+import { useUserAccount } from '@/composable/useUserAccount';
 
 const router = useRouter();
+const userAccount = useUserAccount();
 
 const formApi = useForm<CreateUserData>({
 	submit: async (data): Promise<void | ValidationError<CreateUserData>> => {
-		const result = await createUser(data);
+		const result = await userAccount.createAccount(data);
 
 		switch (result.type) {
 			case 'SUCCESS': {
-				// TODO: update user state
 				router.push(AppPath.Main);
 				break;
 			}

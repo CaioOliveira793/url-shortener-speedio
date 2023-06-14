@@ -11,22 +11,23 @@ import {
 import { zodFormAdapter } from '@/validation/ZodHelper';
 import { UserCredentialSchema } from '@/validation/Iam';
 import { AppPath } from '@/config/router';
-import { authenticateUser, type UserCredential } from '@/service/Iam';
+import type { UserCredential } from '@/service/Iam';
 import { AuthenticationType, type AuthenticationError } from '@/error/api';
 import TextInput from '@/component/form/TextInput.vue';
 import VButton from '@/component/form/VButton.vue';
 import Typography from '@/style/typography.module.css';
 import ErrorMessageList from '@/component/form/ErrorMessageList.vue';
+import { useUserAccount } from '@/composable/useUserAccount';
 
 const router = useRouter();
+const userAccount = useUserAccount();
 
 const formApi = useForm<UserCredential>({
 	submit: async data => {
-		const result = await authenticateUser(data);
+		const result = await userAccount.authenticate(data);
 
 		switch (result.type) {
 			case 'SUCCESS': {
-				// TODO: update user state
 				router.push(AppPath.Main);
 				break;
 			}
