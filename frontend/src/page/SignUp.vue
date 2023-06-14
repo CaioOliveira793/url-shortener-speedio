@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { FORM_ERROR } from 'final-form';
 import { useRouter } from 'vue-router';
 import {
 	useForm,
@@ -9,20 +8,18 @@ import {
 	useFormState,
 } from 'vue-typed-form';
 import { zodFormAdapter } from '@/validation/ZodHelper';
-import { UserCredentialSchema } from '@/validation/Iam';
+import { CreateUserSchema } from '@/validation/Iam';
 import { AppPath } from '@/config/router';
-import { authenticateUser, type UserCredential } from '@/service/Iam';
-import { AuthenticationType, type AuthenticationError } from '@/error/api';
+import { createUser, type CreateUserData } from '@/service/Iam';
 import TextInput from '@/component/form/TextInput.vue';
 import VButton from '@/component/form/VButton.vue';
 import Typography from '@/style/typography.module.css';
-import ErrorMessageList from '@/component/form/ErrorMessageList.vue';
 
 const router = useRouter();
 
-const formApi = useForm<UserCredential>({
-	submit: async data => {
-		const result = await authenticateUser(data);
+const formApi = useForm<CreateUserData>({
+	submit: async (data): Promise<void | ValidationError<CreateUserData>> => {
+		const result = await createUser(data);
 
 		switch (result.type) {
 			case 'SUCCESS': {
@@ -30,15 +27,18 @@ const formApi = useForm<UserCredential>({
 				router.push(AppPath.Main);
 				break;
 			}
-			case 'NOT_FOUND': {
-				return { email: ['e-mail não encontrado'] };
-			}
-			case 'AUTHENTICATION': {
-				return handleAuthenticationError(result.value);
+			case 'RESOURCE_ALREADY_EXISTS': {
+				return { email: ['e-mail já esta em uso'] };
 			}
 		}
 	},
-	validate: zodFormAdapter(UserCredentialSchema),
+	validate: zodFormAdapter(CreateUserSchema),
+});
+
+const name = useFieldState({
+	formApi,
+	name: 'name',
+	transformer: TextInputTransform,
 });
 
 const email = useFieldState({
@@ -54,32 +54,24 @@ const password = useFieldState({
 });
 
 const formState = useFormState({ formApi });
-
-function handleAuthenticationError(
-	error: AuthenticationError
-): void | ValidationError<UserCredential> {
-	switch (error.type) {
-		case AuthenticationType.InvalidCredential: {
-			return { [FORM_ERROR]: ['credenciais inválidas'] };
-		}
-		case AuthenticationType.InvalidPassword: {
-			return { password: ['senha incorreta'] };
-		}
-		case AuthenticationType.RetryExceeded: {
-			return {
-				[FORM_ERROR]: [
-					'limite de tentativas excedido, tente novamente mais tarde',
-				],
-			};
-		}
-	}
-}
 </script>
 
 <template>
 	<main :class="$style.page_container">
-		<h1 :class="Typography.heading2">Login</h1>
+		<h1 :class="Typography.heading2">Criar conta</h1>
 		<form :class="$style.form_container" @submit.prevent="formApi.submit">
+			<TextInput
+				label="Nome"
+				variant="contained"
+				size="medium"
+				fullwidth
+				type="text"
+				inputmode="text"
+				autocomplete="name"
+				required
+				v-bind="name.prop"
+				v-on="name.event"
+			/>
 			<TextInput
 				label="E-mail"
 				variant="contained"
@@ -99,7 +91,7 @@ function handleAuthenticationError(
 				fullwidth
 				type="password"
 				inputmode="password"
-				autocomplete="current-password"
+				autocomplete="new-password"
 				required
 				v-bind="password.prop"
 				v-on="password.event"

@@ -87,7 +87,7 @@ export async function authenticateUser(
 	const response = await fetch(request);
 	const resData = await parseJsonFromResponse(response);
 
-	if (response.status === 201) {
+	if (response.status === 200) {
 		return { type: 'SUCCESS', value: resData };
 	}
 
