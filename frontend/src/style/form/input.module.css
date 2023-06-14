@@ -71,108 +71,108 @@
 
 
 /* .variant */
-.input.outlined {
+.outlined {
 	--input-border-color: var(--disable-overlay);
 	--input-bg-color: var(--surface-color-1);
 }
 
-.input.outlined:disabled,
-.input.outlined[disabled],
-.input.outlined input:disabled {
+.outlined:disabled,
+.outlined[disabled],
+.outlined input:disabled {
 	--input-border-color: var(--disable-overlay);
 }
 
-.input.contained {
+.contained {
 	--input-bg-color: var(--surface-color-2);
 	--input-border-color: var(--input-bg-color);
 }
 
-.input.contained:disabled,
-.input.contained[disabled],
-.input.contained input:disabled {
+.contained:disabled,
+.contained[disabled],
+.contained input:disabled {
 	--input-bg-color: var(--disable-overlay);
 	--input-border-color: transparent;
 }
 
 
 /* .size */
-.input.small {
+.small {
 	composes: input_small from '@/style/typography.module.css';
 }
 
-.input.small input {
+.small input {
 	padding: calc(var(--padding-unit) * .8) calc(var(--padding-unit) * 1.2);
 }
 
-.input.small > :not(input):first-child {
+.small > :not(input):first-child {
 	padding: calc(var(--padding-unit) * .8) 0;
 	padding-left: calc(var(--padding-unit) * 1.2);
 }
 
-.input.small > :not(input):last-child {
+.small > :not(input):last-child {
 	padding: calc(var(--padding-unit) * .8) 0;
 	padding-right: calc(var(--padding-unit) * 1.2);
 }
 
-.input.small > svg:first-child {
+.small > svg:first-child {
 	box-sizing: content-box;
 }
 
-.input.small > svg:last-child {
+.small > svg:last-child {
 	box-sizing: content-box;
 }
 
 
-.input.medium {
+.medium {
 	composes: input_medium from '@/style/typography.module.css';
 }
 
-.input.medium input {
+.medium input {
 	padding: calc(var(--padding-unit) * 1.2) calc(var(--padding-unit) * 1.6);
 }
 
-.input.medium > :not(input, select):first-child {
+.medium > :not(input, select):first-child {
 	padding: calc(var(--padding-unit) * 1.2) 0;
 	padding-left: calc(var(--padding-unit) * 1.6);
 }
 
-.input.medium > :not(input):last-child {
+.medium > :not(input):last-child {
 	padding: calc(var(--padding-unit) * 1.2) 0;
 	padding-right: calc(var(--padding-unit) * 1.6);
 }
 
-.input.medium > svg:first-child {
+.medium > svg:first-child {
 	box-sizing: content-box;
 }
 
-.input.medium > svg:last-child {
+.medium > svg:last-child {
 	box-sizing: content-box;
 }
 
 
-.input.large {
+.large {
 	composes: input_large from '@/style/typography.module.css';
 }
 
-.input.large input {
+.large input {
 	padding: calc(var(--padding-unit) * 1.6);
 }
 
-.input.large > :not(input):first-child {
+.large > :not(input):first-child {
 	padding: calc(var(--padding-unit) * 1.6) 0;
 	padding-left: calc(var(--padding-unit) * 1.6);
 }
 
-.input.large > :not(input):last-child {
+.large > :not(input):last-child {
 	padding: calc(var(--padding-unit) * 1.6) 0;
 	padding-right: calc(var(--padding-unit) * 1.6);
 }
 
-.input.large > svg:first-child {
+.large > svg:first-child {
 	box-sizing: content-box;
 }
 
-.input.large > svg:last-child {
+.large > svg:last-child {
 	box-sizing: content-box;
 }
 

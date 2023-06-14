@@ -12,7 +12,7 @@ import { zodFormAdapter } from '@/validation/ZodHelper';
 import { CreateShortUrlSchema } from '@/validation/ShortUrl';
 import { AppPath } from '@/config/router';
 import ShortUrlEntry from '@/component/ShortUrlEntry.vue';
-import LongUrlInput from '@/component/LongUrlInput.vue';
+import TextInput from '@/component/form/TextInput.vue';
 
 const router = useRouter();
 
@@ -31,7 +31,7 @@ const formApi = useForm<CreateShortUrlData>({
 				break;
 			}
 			case 'UNAUTHORIZED': {
-				router.push(AppPath.Login.path);
+				router.push(AppPath.Login);
 				break;
 			}
 			case 'RESOURCE_ALREADY_EXISTS': {
@@ -54,11 +54,15 @@ const longUrl = useFieldState({
 		<h1 class="heading1" :class="$style.page_title">Encurtador de URL</h1>
 
 		<form :class="$style.form_container" @submit.prevent="formApi.submit">
-			<LongUrlInput
-				:name="longUrl.prop.name"
-				:value="longUrl.prop.value"
-				:invalid="longUrl.prop.invalid ? '' : null"
-				:errors="longUrl.prop.errors"
+			<TextInput
+				label="URL"
+				variant="contained"
+				size="large"
+				fullwidth
+				inputmode="url"
+				placeholder="https://url.com/sua-longa-e-imemoravel-url-aqui"
+				required
+				v-bind="longUrl.prop"
 				v-on="longUrl.event"
 			/>
 			<button

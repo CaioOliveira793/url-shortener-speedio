@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import InputStyle from '@/style/form/input.module.css';
-import SpinnerStyle from '@/style/feedback/Spinner.module.css';
+import SpinnerStyle from '@/style/feedback/spinner.module.css';
 
 export type InputVariant = 'outlined' | 'contained';
 export type InputSize = 'small' | 'medium' | 'large';

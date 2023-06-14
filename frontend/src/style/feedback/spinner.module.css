@@ -1,0 +1,46 @@
+.spinner {
+	width: 1em;
+	height: 1em;
+	margin: 0.5em;
+	border-radius: 50%;
+	aspect-ratio: 1 / 1;
+}
+
+.arch {
+	border: 0.14em solid currentcolor;
+	border-right-color: transparent;
+	animation: rotate infinite linear 600ms;
+
+	composes: spinner;
+}
+
+/* move to styles/Keyframes */
+@keyframes rotate {
+	0% {
+		rotate: 0deg;
+	}
+	100% {
+		rotate: 360deg;
+	}
+}
+
+.point {
+	background-color: currentcolor;
+	animation: pulse infinite linear 700ms;
+
+	composes: spinner;
+}
+
+@keyframes pulse {
+	0% {
+		scale: 10%;
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		scale: 100%;
+	}
+}
