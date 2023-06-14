@@ -9,7 +9,6 @@ export const DateTimeInputTransform: InputTransform<InputData, Date | null> = {
 
 function parseDatetimeFromInputEvent(ev: InputEvent) {
 	const target = ev.target;
-	console.log('target', target);
 	if (
 		target instanceof HTMLInputElement &&
 		isHTMLInputElementDateTimeType(target)

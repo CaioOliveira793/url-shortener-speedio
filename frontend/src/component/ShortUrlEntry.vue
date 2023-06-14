@@ -20,7 +20,6 @@ const shortLink = makeShortUrlRedirectLink(props.shortUrl.slug);
 async function copyShortUrlToClipboard() {
 	try {
 		await navigator.clipboard.writeText(shortLink);
-		console.log('Content copied to clipboard');
 	} catch (err) {
 		console.error('Failed to copy: ', err);
 	}
@@ -43,15 +42,22 @@ async function copyShortUrlToClipboard() {
 		</div>
 
 		<div :class="$style.tag_container">
-			<span class="tag_medium" :class="$style.activity_tag">ATIVO</span>
-			<span class="tag_medium" :class="$style.activity_tag"
-				>Expiração:
+			<span
+				class="tag_medium"
+				:class="{ [$style.tag]: true, [$style.inactive]: !shortUrl.active }"
+				>{{ shortUrl.active ? 'ATIVO' : 'INATIVA' }}</span
+			>
+			<span class="tag_medium" :class="$style.tag">
+				Expiração:
 				{{
 					shortUrl.expires
 						? ShortDateTimeFormatter.format(shortUrl.expires)
 						: 'indefinida'
-				}}</span
-			>
+				}}
+			</span>
+			<span class="tag_medium" :class="$style.tag">
+				Visitas: {{ shortUrl.access }}
+			</span>
 		</div>
 
 		<div>
@@ -101,7 +107,11 @@ async function copyShortUrlToClipboard() {
 	gap: calc(var(--spacing-unit) * 1.5);
 }
 
-.activity_tag {
+.inactive {
+	color: var(--failure-color);
+}
+
+.tag {
 	padding: calc(var(--padding-unit) * 0.5);
 	border-radius: var(--border-radius-unit);
 	background-color: var(--surface-color-4);

@@ -119,7 +119,7 @@
 	}
 
 	#app {
-		max-width: 1400px;
+		max-width: 980px;
 		width: 100%;
 		padding: calc(var(--spacing-unit) * 4);
 	}

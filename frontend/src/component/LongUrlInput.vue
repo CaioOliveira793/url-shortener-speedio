@@ -15,7 +15,14 @@ const ID = 'long-url-input';
 	<div class="input_wrapper fullwidth">
 		<InputLabel label="URL" :for="ID" />
 		<div class="input contained large fullwidth input_large">
-			<input :id="ID" type="text" inputmode="url" required v-bind="$attrs" />
+			<input
+				:id="ID"
+				type="text"
+				inputmode="url"
+				placeholder="https://url.com/sua-longa-e-imemoravel-url-aqui"
+				required
+				v-bind="$attrs"
+			/>
 		</div>
 		<ErrorMessageList
 			role="alert"
