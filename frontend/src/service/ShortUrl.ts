@@ -5,7 +5,7 @@ import {
 	type ResourceNotFound,
 	type UnauthorizedError,
 } from '@/error/api';
-import { apiEndpoint, type ResultType } from './common';
+import { apiEndpoint, parseJsonFromResponse, type ResultType } from './common';
 
 export interface ShortUrlResource {
 	readonly slug: string;
@@ -47,7 +47,7 @@ export async function createShortUrl(
 	});
 
 	const response = await fetch(request);
-	const resData = await response.json();
+	const resData = await parseJsonFromResponse(response);
 
 	if (response.status === 201) {
 		return { type: 'SUCCESS', value: resData };
@@ -79,7 +79,7 @@ export async function getShortUrl(slug: string): Promise<GetShortUrlResponse> {
 	});
 
 	const response = await fetch(request);
-	const resData = await response.json();
+	const resData = await parseJsonFromResponse(response);
 
 	if (response.status === 200) {
 		return { type: 'SUCCESS', value: resData };

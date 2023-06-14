@@ -57,14 +57,17 @@ export interface ForbiddenError extends ApiError {
 
 export const enum ApiErrorType {
 	UnknownResponse = 'UNKNOWN_RESPONSE',
+	InvalidResponseBody = 'INVALID_RESPONSE_BODY',
 }
 
 export class ApiClientError extends Error {
 	public readonly type: ApiErrorType;
 	public readonly data: unknown;
 
-	constructor(type: ApiErrorType, data?: unknown) {
-		super('API Client error: ' + ApiClientError.messageFromApiErrorType(type));
+	constructor(type: ApiErrorType, data?: unknown, cause?: Error) {
+		super('API Client error: ' + ApiClientError.messageFromApiErrorType(type), {
+			cause,
+		});
 		this.type = type;
 		this.data = data;
 	}
