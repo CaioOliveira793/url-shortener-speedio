@@ -4,6 +4,7 @@ import { Injectable, Optional, Provider } from '@nestjs/common';
 
 export interface ShortUrlRepository {
 	insert(shortUrl: ShortUrl): Promise<void>;
+	incrementAccess(slug: string, access: number): Promise<void>;
 	find(slug: string): Promise<ShortUrl | null>;
 	listByCreator(creatorId: string): Promise<ShortUrl[]>;
 }
@@ -29,11 +30,18 @@ export class ShortUrlMemRepository implements ShortUrlRepository {
 		this.shortUrls.set(shortUrl.slug, shortUrl.internalState());
 	}
 
+	public async incrementAccess(slug: string, increment: number): Promise<void> {
+		const state = this.shortUrls.get(slug);
+		if (!state) throw new Error('ERROR: entity not found');
+
+		state.access += increment;
+	}
+
 	public async find(slug: string): Promise<ShortUrl | null> {
 		const state = this.shortUrls.get(slug);
 		if (!state) return null;
 
-		return ShortUrl.restore(slug, state);
+		return ShortUrl.restore(slug, structuredClone(state));
 	}
 
 	public async listByCreator(userId: string): Promise<ShortUrl[]> {

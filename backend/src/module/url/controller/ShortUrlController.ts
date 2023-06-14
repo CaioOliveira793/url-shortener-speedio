@@ -88,6 +88,9 @@ export class ShortUrlController {
 			throw new NotFoundException();
 		}
 
+		shortUrl.incrementAccess();
+		await this.shortUrlRepository.incrementAccess(shortUrl.slug, 1);
+
 		res.status(HttpStatus.FOUND).redirect(shortUrl.longUrl);
 	}
 }

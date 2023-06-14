@@ -87,6 +87,11 @@ export class ShortUrl extends Entity<ShortUrlState> {
 		return this.state.active && !this.expired();
 	}
 
+	public incrementAccess(increment = 1): number {
+		this.state.access += increment;
+		return this.state.access;
+	}
+
 	public get slug() {
 		return this.state.slug;
 	}
