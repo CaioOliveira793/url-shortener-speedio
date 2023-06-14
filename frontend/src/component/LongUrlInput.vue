@@ -14,7 +14,7 @@ const ID = 'long-url-input';
 <template>
 	<div class="input_wrapper fullwidth">
 		<InputLabel label="URL" :for="ID" />
-		<div class="input contained large fullwidth">
+		<div class="input contained large fullwidth input_large">
 			<input :id="ID" type="text" inputmode="url" required v-bind="$attrs" />
 		</div>
 		<ErrorMessageList

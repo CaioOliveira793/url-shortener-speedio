@@ -99,7 +99,7 @@
 
 /* .size */
 .input.small {
-	composes: input_small from '../Typography.module.css';
+	composes: input_small from '@/style/typography.module.css';
 }
 
 .input.small input {
@@ -126,7 +126,7 @@
 
 
 .input.medium {
-	composes: input_medium from '../Typography.module.css';
+	composes: input_medium from '@/style/typography.module.css';
 }
 
 .input.medium input {
@@ -153,7 +153,7 @@
 
 
 .input.large {
-	composes: input_large from '../Typography.module.css';
+	composes: input_large from '@/style/typography.module.css';
 }
 
 .input.large input {

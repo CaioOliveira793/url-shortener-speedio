@@ -26,6 +26,9 @@
 				"./../test/*"
 			]
 		},
+		"types": [
+			"unplugin-icons/types/vue"
+		],
 		"outDir": "dist",
 		"isolatedModules": true,
 		"resolveJsonModule": true,

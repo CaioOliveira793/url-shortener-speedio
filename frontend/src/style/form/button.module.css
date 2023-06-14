@@ -361,15 +361,15 @@
 }
 
 .button.small {
-	composes: button_small from '@/style/Typography.module.css';
+	composes: button_small from '@/style/typography.module.css';
 }
 
 .button.medium {
-	composes: button_medium from '@/style/Typography.module.css';
+	composes: button_medium from '@/style/typography.module.css';
 }
 
 .button.large {
-	composes: button_large from '@/style/Typography.module.css';
+	composes: button_large from '@/style/typography.module.css';
 }
 
 .button.none

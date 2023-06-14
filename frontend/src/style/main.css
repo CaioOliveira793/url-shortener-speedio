@@ -102,20 +102,26 @@
 		accent-color: var(--brand-color);
 	}
 
-	body, #app {
+	body {
 		font-family: var(--font-family);
 		font-weight: var(--font-weight-regular);
 		font-size: calc(var(--font-size) * 0.875);
 		line-height: calc(var(--line-height) * 1.1);
 		letter-spacing: var(--letter-spacing-tight);
 
-		min-height: 100vh;
 		background-color: var(--surface-color-1);
 		color: var(--text-color-1);
+
+		display: flex;
+		flex-flow: column nowrap;
+		place-items: center flex-start;
+		width: 100vw;
 	}
 
 	#app {
-		margin: calc(var(--spacing-unit) * 2);
+		max-width: 1400px;
+		width: 100%;
+		padding: calc(var(--spacing-unit) * 4);
 	}
 
 	:root {
