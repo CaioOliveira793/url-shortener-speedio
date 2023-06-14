@@ -2,9 +2,6 @@
 
 @import 'normalize.css' layer(reset);
 @import 'token.css' layer(base);
-@import '@/style/typography.module.css' layer(module);
-@import '@/style/form/button.module.css' layer(module);
-@import '@/style/form/input.module.css' layer(module);
 
 @layer reset {
 	fieldset, ul, ol, h1, h2, h3, h4, h5, h6, p, pre, button {

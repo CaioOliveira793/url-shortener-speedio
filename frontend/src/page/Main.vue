@@ -14,6 +14,7 @@ import { AppPath } from '@/config/router';
 import ShortUrlEntry from '@/component/ShortUrlEntry.vue';
 import TextInput from '@/component/form/TextInput.vue';
 import VButton from '@/component/form/VButton.vue';
+import Typography from '@/style/typography.module.css';
 
 const router = useRouter();
 
@@ -52,7 +53,7 @@ const longUrl = useFieldState({
 
 <template>
 	<main :class="$style.page_container">
-		<h1 class="heading1" :class="$style.page_title">Encurtador de URL</h1>
+		<h1 :class="[Typography.heading1, $style.page_title]">Encurtador de URL</h1>
 
 		<form :class="$style.form_container" @submit.prevent="formApi.submit">
 			<TextInput
@@ -78,7 +79,7 @@ const longUrl = useFieldState({
 		</p>
 
 		<div :class="$style.shortened_url_list_container">
-			<h4 class="heading4">Url encurtadas</h4>
+			<h4 :class="Typography.heading4">Url encurtadas</h4>
 
 			<ul>
 				<li v-for="shortUrl in createdUrls" :key="shortUrl.slug">
@@ -102,7 +103,6 @@ const longUrl = useFieldState({
 
 .page_description {
 	align-self: center;
-	/* max-width: 560px; */
 	width: 100%;
 }
 
@@ -111,7 +111,6 @@ const longUrl = useFieldState({
 	flex-flow: column nowrap;
 	align-self: center;
 	gap: calc(var(--spacing-unit) * 1.5);
-	/* max-width: 600px; */
 	width: 100%;
 }
 

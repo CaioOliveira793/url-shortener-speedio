@@ -3,6 +3,8 @@ import {
 	makeShortUrlRedirectLink,
 	type ShortUrlResource,
 } from '@/service/ShortUrl';
+import VButton from '@/component/form/VButton.vue';
+import Typography from '@/style/typography.module.css';
 import CopyIcon from '~icons/fa6-solid/copy';
 
 const ShortDateTimeFormatter = new Intl.DateTimeFormat('pt-BR', {
@@ -32,22 +34,26 @@ async function copyShortUrlToClipboard() {
 			<a :href="shortLink" target="_blank" rel="noopener noreferrer">
 				{{ shortLink }}
 			</a>
-			<button
-				class="button icon_outlined small"
-				s-color="info"
+			<VButton
+				variant="icon_outlined"
+				size="small"
+				color="info"
 				@click="copyShortUrlToClipboard"
 			>
 				<CopyIcon />
-			</button>
+			</VButton>
 		</div>
 
 		<div :class="$style.tag_container">
 			<span
-				class="tag_medium"
-				:class="{ [$style.tag]: true, [$style.inactive]: !shortUrl.active }"
+				:class="{
+					[$style.tag]: true,
+					[Typography.tag_medium]: true,
+					[$style.inactive]: !shortUrl.active,
+				}"
 				>{{ shortUrl.active ? 'ATIVO' : 'INATIVA' }}</span
 			>
-			<span class="tag_medium" :class="$style.tag">
+			<span :class="[Typography.tag_medium, $style.tag]">
 				Expiração:
 				{{
 					shortUrl.expires
@@ -55,7 +61,7 @@ async function copyShortUrlToClipboard() {
 						: 'indefinida'
 				}}
 			</span>
-			<span class="tag_medium" :class="$style.tag">
+			<span :class="[Typography.tag_medium, $style.tag]">
 				Visitas: {{ shortUrl.access }}
 			</span>
 		</div>
