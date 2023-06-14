@@ -13,6 +13,7 @@ import { AppPath } from '@/config/router';
 import type { CreateUserData } from '@/service/Iam';
 import TextInput from '@/component/form/TextInput.vue';
 import VButton from '@/component/form/VButton.vue';
+import ErrorMessageList from '@/component/form/ErrorMessageList.vue';
 import Typography from '@/style/typography.module.css';
 import { useUserAccount } from '@/composable/useUserAccount';
 
