@@ -33,7 +33,7 @@ const formApi = useForm<CreateShortUrlData>({
 				break;
 			}
 			case 'UNAUTHORIZED': {
-				router.push(AppPath.Login);
+				router.push(AppPath.SignIn);
 				break;
 			}
 			case 'RESOURCE_ALREADY_EXISTS': {
@@ -41,6 +41,7 @@ const formApi = useForm<CreateShortUrlData>({
 			}
 		}
 	},
+	validateOnBlur: false,
 	validate: zodFormAdapter(CreateShortUrlSchema),
 });
 
@@ -72,11 +73,18 @@ const longUrl = useFieldState({
 			</VButton>
 		</form>
 
-		<p :class="$style.page_description">
-			Crie URLs curtas, memoráveis e rastreáveis com o encurtador de URL. Use a
-			esta ferramenta para encurtar links de qualquer origem e usa-lo em todos
-			os lugares onde você quiser compartilhar.
-		</p>
+		<div :class="$style.text_container">
+			<p :class="$style.page_description">
+				Crie URLs curtas, memoráveis e rastreáveis com o encurtador de URL. Use
+				a esta ferramenta para encurtar links de qualquer origem e usa-lo em
+				todos os lugares onde você quiser compartilhar.
+			</p>
+
+			<p>
+				<router-link :to="AppPath.SignIn">Entrar</router-link> -
+				<router-link :to="AppPath.SignUp">Criar minha conta</router-link>
+			</p>
+		</div>
 
 		<div :class="$style.shortened_url_list_container">
 			<h4 :class="Typography.heading4">Url encurtadas</h4>
@@ -110,6 +118,15 @@ const longUrl = useFieldState({
 	display: flex;
 	flex-flow: column nowrap;
 	align-self: center;
+	gap: calc(var(--spacing-unit) * 1.5);
+	width: 100%;
+}
+
+.text_container {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: flex-start;
+	align-items: flex-start;
 	gap: calc(var(--spacing-unit) * 1.5);
 	width: 100%;
 }

@@ -3,8 +3,9 @@ import {
 	createRouter,
 	createWebHistory,
 } from 'vue-router';
-import NotFound from '@/page/NotFound.vue';
 import Main from '@/page/Main.vue';
+import NotFound from '@/page/NotFound.vue';
+import SignIn from '@/page/SignIn.vue';
 
 export interface RouteLocation {
 	path: string;
@@ -12,19 +13,21 @@ export interface RouteLocation {
 }
 
 export const AppPath = {
-	Main: { name: 'Main', path: '/' },
-	Login: { name: 'UserLogin', path: '/login' },
-	Top100: { name: 'Top100', path: '/top-100' },
-	NotFount: { name: 'NotFount', path: '/not-found' },
+	Main: '/',
+	SignIn: '/signin',
+	SignUp: '/signup',
+	Top100: '/top-100',
+	NotFound: '/not-found',
 } as const;
 
 const routes: readonly RouteRecordRaw[] = [
-	{ ...AppPath.Main, component: Main },
-	{ ...AppPath.NotFount, component: NotFound },
+	{ name: 'Main', path: AppPath.Main, component: Main },
+	{ name: 'SignIn', path: AppPath.SignIn, component: SignIn },
+	{ name: 'NotFound', path: AppPath.NotFound, component: NotFound },
 	{
 		name: 'CatchAll',
 		path: '/:catch_all(.*)',
-		redirect: AppPath.NotFount.path,
+		redirect: AppPath.NotFound,
 	},
 ];
 

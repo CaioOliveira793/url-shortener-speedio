@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { AppPath } from '@/config/router';
 import TypographyStyle from '@/style/typography.module.css';
 </script>
 
@@ -9,7 +10,7 @@ import TypographyStyle from '@/style/typography.module.css';
 		</h1>
 		<p>
 			Verifique sua URL ou volte para a
-			<router-link to="/">página inicial</router-link>.
+			<router-link :to="AppPath.Main">página inicial</router-link>.
 		</p>
 		<!-- TODO: add page not found image -->
 	</main>

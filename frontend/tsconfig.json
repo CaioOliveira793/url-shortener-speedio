@@ -3,10 +3,7 @@
 	"compilerOptions": {
 		"incremental": false,
 		"target": "ES2022",
-		"lib": [
-			"ES2022",
-			"DOM"
-		],
+		"lib": ["ES2022", "DOM"],
 		"module": "ESNext",
 		"moduleResolution": "node",
 		"noEmit": true,
@@ -19,16 +16,10 @@
 		"rootDir": "./",
 		"baseUrl": "./",
 		"paths": {
-			"@/*": [
-				"./src/*"
-			],
-			"@test/*": [
-				"./../test/*"
-			]
+			"@/*": ["./src/*"],
+			"@test/*": ["./../test/*"]
 		},
-		"types": [
-			"unplugin-icons/types/vue"
-		],
+		"types": ["unplugin-icons/types/vue"],
 		"outDir": "dist",
 		"isolatedModules": true,
 		"resolveJsonModule": true,
@@ -69,9 +60,5 @@
 		"vitest.config.*",
 		"env.d.ts"
 	],
-	"exclude": [
-		"node_modules/**",
-		"dist/**",
-		"coverage/**"
-	]
+	"exclude": ["node_modules/**", "dist/**", "coverage/**"]
 }
