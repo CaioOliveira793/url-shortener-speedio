@@ -51,7 +51,7 @@
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
 		"noUncheckedIndexedAccess": false,
-		"noPropertyAccessFromIndexSignature": true,
+		"noPropertyAccessFromIndexSignature": false,
 		"preserveConstEnums": true,
 		"exactOptionalPropertyTypes": true,
 		"useUnknownInCatchVariables": true,

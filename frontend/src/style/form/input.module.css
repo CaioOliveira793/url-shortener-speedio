@@ -65,7 +65,7 @@
 	--input-color: var(--disable-overlay);
 }
 
-.input.fullwidth {
+.input[fullwidth] {
 	width: 100%;
 }
 
@@ -76,7 +76,6 @@
 	--input-bg-color: var(--surface-color-1);
 }
 
-/* TODO: improve input outlined styles */
 .input.outlined:disabled,
 .input.outlined[disabled],
 .input.outlined input:disabled {
@@ -88,7 +87,6 @@
 	--input-border-color: var(--input-bg-color);
 }
 
-/* TODO: improve input disabled bg color */
 .input.contained:disabled,
 .input.contained[disabled],
 .input.contained input:disabled {
@@ -189,6 +187,6 @@
 	gap: var(--spacing-unit);
 }
 
-.input_wrapper.fullwidth {
+.input_wrapper[fullwidth] {
 	width: 100%;
 }
