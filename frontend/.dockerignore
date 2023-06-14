@@ -3,14 +3,12 @@
 
 # permitted folders:
 !src
-!test:e2e
-!rollup
-
-!nginx-template
 
 # permitted files:
 !package*.json
 !pnpm-lock.yaml
-!.npmrc
 !tsconfig.json
+!env.d.ts
+!index.html
+!vite.config.ts
 !LICENSE

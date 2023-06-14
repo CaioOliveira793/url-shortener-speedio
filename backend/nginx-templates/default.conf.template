@@ -1,0 +1,11 @@
+server {
+	listen ${PORT};
+
+	location /r/ {
+		proxy_pass ${REDIRECT_ADDRESS};
+	}
+	
+	location / {
+		proxy_pass ${FRONTEND_ADDRESS};
+	}
+}

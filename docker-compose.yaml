@@ -1,0 +1,53 @@
+version: '3.7'
+
+services:
+  nginx:
+    container_name: url_shortener_proxy
+    image: docker.io/library/nginx:1.24.0-bullseye
+    depends_on:
+    - url_shortener_service
+    - url_shortener_frontend
+    volumes:
+    - ./backend/nginx-templates:/etc/nginx/templates
+    environment:
+      PORT: 8080
+      FRONTEND_ADDRESS: http://url_shortener_frontend:4000
+      REDIRECT_ADDRESS: http://url_shortener_service:3333/short_url/url/location/
+    networks:
+    - url_shortener_default_net
+    ports:
+    - 8080:8080
+
+  url_shortener_service:
+    container_name: url_shortener_service
+    image: url_shortener_node_service
+    build:
+      context: ./backend
+      dockerfile: dockerfile
+      target: development
+    environment:
+      PORT: 3333
+      TOKEN_SECRET: 5a625eccae0dc6fc4509
+      NODE_ENV: development
+    networks:
+    - url_shortener_default_net
+    ports:
+    - 3333:3333
+
+  url_shortener_frontend:
+    container_name: url_shortener_frontend
+    image: url_shortener_vue_front
+    build:
+      context: ./frontend
+      dockerfile: dockerfile
+      target: development
+    environment:
+      APP_API_ADDRESS: http://url_shortener_service:3333
+      APP_SHORT_URL_REDIRECT_ENDPOINT: http://localhost:8080/r
+    networks:
+    - url_shortener_default_net
+    ports:
+    - 4000:4000
+
+networks:
+  url_shortener_default_net: {}
