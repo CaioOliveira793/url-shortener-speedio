@@ -4,7 +4,6 @@ import { AppError, HttpErrorObject } from '../base/AppError';
 export const enum AuthenticationType {
 	InvalidCredential = 'INVALID_CREDENTIAL',
 	InvalidPassword = 'INVALID_PASSWORD',
-	InvalidRole = 'INVALID_ROLE',
 	RetryExceeded = 'RETRY_EXCEEDED',
 }
 
