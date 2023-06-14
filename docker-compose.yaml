@@ -25,6 +25,8 @@ services:
       context: ./backend
       dockerfile: dockerfile
       target: development
+    volumes:
+    - ./backend/src:/home/node/src
     environment:
       PORT: 3333
       TOKEN_SECRET: 5a625eccae0dc6fc4509
@@ -41,8 +43,10 @@ services:
       context: ./frontend
       dockerfile: dockerfile
       target: development
+    volumes:
+    - ./frontend/src:/home/node/src
     environment:
-      APP_API_ADDRESS: http://url_shortener_service:3333
+      APP_API_ADDRESS: http://localhost:3333
       APP_SHORT_URL_REDIRECT_ENDPOINT: http://localhost:8080/r
     networks:
     - url_shortener_default_net

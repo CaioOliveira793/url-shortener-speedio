@@ -18,9 +18,4 @@ COPY ./ ./
 
 RUN pnpm install --frozen-lockfile
 
-RUN pnpm run build
-
-STOPSIGNAL SIGTERM
-
-# package.json start cmd
-CMD node build/main.js
+CMD pnpm run start:dev

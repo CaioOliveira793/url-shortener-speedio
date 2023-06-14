@@ -18,6 +18,4 @@ COPY ./ ./
 
 RUN pnpm install --frozen-lockfile
 
-RUN pnpm run build
-
-CMD pnpm run start
+CMD pnpm run start:dev

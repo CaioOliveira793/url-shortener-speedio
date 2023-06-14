@@ -15,13 +15,13 @@ export default defineConfig({
 		},
 	},
 	server: {
-		port: 5000,
+		port: 4000,
+		strictPort: true,
 		host: '0.0.0.0',
 		open: false,
 	},
 	preview: {
-		port: 4000,
-		strictPort: true,
+		port: 5000,
 		host: '0.0.0.0',
 		open: false,
 	},
