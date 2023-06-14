@@ -2,6 +2,8 @@
 
 Neste desafio implementei um serviço de encurtamento de URLs utilizado Node.js no backend e VueJS no frontend
 
+[Vídeo de apresentação do projeto](https://drive.google.com/file/d/1XXyQREL2OUUFfULNLpqC5rlAwG0jDT5U/view?usp=sharing)
+
 ## Utilização
 
 No diretório raiz do projeto, é encontrado um arquivo `docker-compose.yaml` no qual é utilizado para instanciar todos os serviços que compôem a aplicação.
