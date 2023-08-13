@@ -1,5 +1,4 @@
 {
-	"extends": "@vue/tsconfig/tsconfig.dom.json",
 	"compilerOptions": {
 		"incremental": false,
 		"target": "ES2022",

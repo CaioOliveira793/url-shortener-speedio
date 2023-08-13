@@ -8,11 +8,6 @@ import SignIn from '@/page/SignIn.vue';
 import SignUp from '@/page/SignUp.vue';
 import NotFound from '@/page/NotFound.vue';
 
-export interface RouteLocation {
-	path: string;
-	name: string;
-}
-
 export const AppPath = {
 	Main: '/',
 	SignIn: '/signin',
